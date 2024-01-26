@@ -1,0 +1,31 @@
+@import './fonts/stylesheet.css';
+
+*/ h1,
+.h1 {
+  font-family: 'reeyregular';
+  line-height: 1.5;
+}
+
+h2,
+.h2 {
+  text-transform: uppercase;
+  font-family: 'oregon_ldo_lightregular';
+  margin-bottom: 0;
+}
+
+.nav {
+  display: flex;
+  font-size: 20px;
+  list-style: none;
+  margin: 0 20px;
+  padding: 35px 0 0;
+  text-align: center;
+}
+
+.navItem a {
+  flex-grow: 1;
+  font-size: 14px;
+  text-decoration: none;
+  transition: 0.25s all;
+  text-transform: uppercase;
+}

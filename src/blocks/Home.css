@@ -1,0 +1,50 @@
+.homeTitleText {
+    margin-top: 0;
+    line-height: 4;
+    text-shadow: #bbb8b8 0px 1px;
+}
+
+.homeHeader {
+    font-family: 'reeyregular';
+    position: relative;
+    text-align: center;
+    z-index: 2;
+}
+
+.date {
+    color: var(--secondary--light);
+    margin-bottom: 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 21px;
+}
+
+.date a {
+    color: var(--secondary--light);
+    text-decoration: none;
+}
+
+@media screen and (max-width: 450px) {
+    .homeTitleText {
+        line-height: 3;
+    }
+
+    .seperator {
+        display: none;
+    }
+
+    .home {
+        margin-top: -50px;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .date {
+        padding-top: 0;
+        font-size: 22px;
+    }
+
+    .date a {
+        white-space: pre;
+    }
+}
