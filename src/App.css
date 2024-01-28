@@ -8,8 +8,7 @@
 
 h2,
 .h2 {
-  text-transform: uppercase;
-  font-family: 'oregon_ldo_lightregular';
+  font-family: 'reeyregular';
   margin-bottom: 0;
 }
 
@@ -20,10 +19,10 @@ h2,
   margin: 0 20px;
   padding: 35px 0 0;
   text-align: center;
+  justify-content: space-evenly;
 }
 
 .navItem a {
-  flex-grow: 1;
   font-size: 14px;
   text-decoration: none;
   transition: 0.25s all;

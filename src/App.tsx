@@ -23,14 +23,17 @@ function Layout() {
             <Link to="/">Home</Link>
           </li>
           <li className='navItem'>
+            <Link to="/">RSVP</Link>
+          </li>
+          <li className='navItem'>
             <Link to="/about">Our Story</Link>
           </li>
-           {/* <li>
-            <Link to="/dashboard">Dashboard</Link>
+          <li className='navItem'>
+            <Link to="/nothing-here">Wedding Party</Link>
           </li>
-          <li>
-            <Link to="/nothing-here">Nothing Here</Link>
-          </li> */}
+          <li className='navItem'>
+            <Link to="/nothing-here">Photo Gallery</Link>
+          </li>
         </ul>
       </nav>
 
