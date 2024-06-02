@@ -1,0 +1,133 @@
+.ourStory {
+    position: relative;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.ourStory__content {
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    max-width: 500px;
+    z-index: 1;
+    position: relative;
+    line-height: 1.5;
+    background-color: var(--primary--dark);
+}
+
+.ourStory__separatePictures {
+    display: flex;
+}
+
+.ourStory__separatePictures .react-parallax {
+    width: 45%;
+}
+
+p.ourStory__content {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.ourStory__content strong {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.ourStory::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    background: black;
+    top: 0;
+    width: 2px;
+    height: 98%;
+}
+
+.ourStory__title {
+    font-family: 'reeyregular';
+    text-transform: none;
+    margin-bottom: 15px;
+}
+
+.react-parallax {
+    width: 40%;
+    margin: auto;
+}
+
+.react-parallax-bgimage {
+    height: 100%;
+}
+
+.react-parallax-content {
+    display: flex;
+}
+
+.ourStory__hero {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    height: 250px;
+}
+
+.ourStory__hero--final {
+    margin-bottom: 60px;
+}
+
+.ourStory__separatePictures div:nth-of-type(1) img {    
+    right: 0;
+    left: auto !important;
+    transform: none !important;
+}
+
+.ourStory__separatePictures div:nth-of-type(2) img {    
+    left: 0 !important;
+    transform: none !important;
+}
+
+@media screen and (max-width: 650px) {
+    .react-parallax {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .ourStory__content {
+        padding: 0 15px;
+        width: 100%;
+        font-size: 21px;
+        line-height: 2.4rem;
+
+    }
+
+    .ourStory__title {
+        font-size: 2.0rem;
+        line-height: 4.8rem;
+    }
+
+    .ourStory__content strong {
+        font-size: 25px;
+        line-height: 2.8rem;
+    }
+
+    .react-parallax {
+        width: 100%;
+    }
+
+    .react-parallax-bgimage {
+        height: 110% !important;
+    }
+
+    .ourStory {
+        margin-bottom: 50px;
+    }
+
+    .ourStory__hero {
+        height: 350px;
+    }
+
+    .ourStory__separatePictures img {
+        height: 250px !important;
+        transform: none !important;
+    }
+}

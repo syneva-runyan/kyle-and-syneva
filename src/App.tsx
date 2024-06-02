@@ -1,6 +1,9 @@
 import Home from './blocks/Home'
 import './App.css'
 import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
+import FAQ from './blocks/FAQ';
+import OurStory from './blocks/OurStory';
+import ComingSoon from './blocks/ComingSoon';
 
 export default function App() {
   return (
@@ -8,6 +11,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout/>}>
           <Route index element={<Home />} />
+          <Route path="our-story" element={<OurStory />} />
+          <Route path="faq" element={<FAQ />} />
+          <Route path="nothing-here" element={<ComingSoon />} />
         </Route>
       </Routes>
     </BrowserRouter>
@@ -23,16 +29,19 @@ function Layout() {
             <Link to="/">Home</Link>
           </li>
           <li className='navItem'>
-            <Link to="/">RSVP</Link>
+            <Link to="/nothing-here">RSVP</Link>
           </li>
           <li className='navItem'>
-            <Link to="/about">Our Story</Link>
+            <Link to="/our-story">Our Story</Link>
           </li>
           <li className='navItem'>
             <Link to="/nothing-here">Wedding Party</Link>
           </li>
           <li className='navItem'>
-            <Link to="/nothing-here">Photo Gallery</Link>
+            <Link to="/nothing-here">Registry</Link>
+          </li>
+          <li className='navItem'>
+            <Link to="/faq">FAQ</Link>
           </li>
         </ul>
       </nav>
