@@ -15,7 +15,8 @@ function Intro() {
             <Carousel
                 images={[blackandwhite, orkney, saveTheDate]}
             />
-            <h4 className="date">June 7, 2025 <span className="seperator">|</span> <a target="_blank" rel="noopener noreferrer" href="https://www.hawkesdene.com/">Hawkesdene Estate, North Carolina</a></h4>
+            <h4 className="date"><span className="theDate">June 7, 2025</span> <span className="seperator">|</span> 
+            <a target="_blank" rel="noopener noreferrer" href="https://www.hawkesdene.com/">Hawkesdene Estate, North Carolina</a></h4>
             <WeddingWeekend />
         </div>
     );

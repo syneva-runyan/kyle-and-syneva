@@ -27,15 +27,17 @@
 
 @media screen and (max-width: 450px) {
     .homeTitleText {
+        font-size: 33px;
         line-height: 3;
     }
+
 
     .seperator {
         display: none;
     }
 
     .home {
-        margin-top: -50px;
+        margin-top: 15px;
         max-width: 100%;
         overflow-x: hidden;
     }
@@ -45,7 +47,13 @@
         font-size: 22px;
     }
 
+    .theDate {
+        display: inline-block;
+        width: 100%;
+    }
+
     .date a {
         white-space: pre;
+        text-wrap: wrap;
     }
 }

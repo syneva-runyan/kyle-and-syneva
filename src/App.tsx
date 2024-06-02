@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
 import FAQ from './blocks/FAQ';
 import OurStory from './blocks/OurStory';
 import ComingSoon from './blocks/ComingSoon';
+import { useState } from 'react';
 
 export default function App() {
   return (
@@ -21,9 +22,18 @@ export default function App() {
 }
 
 function Layout() {
+  const [showMenu, setShowMenu] = useState(false)
   return (
     <>
-      <nav>
+      <button className="mobileNavCTA" onClick={() => setShowMenu(!showMenu)}> 
+      <span>•</span>
+      <span>•</span>
+      <span>•</span>
+      </button>
+      <nav 
+        className={`navBackground ${showMenu ? "show" : ""}`}
+        onClick={() => setShowMenu(false)}
+      >
         <ul className='nav'>
           <li className='navItem'>
             <Link to="/">Home</Link>
