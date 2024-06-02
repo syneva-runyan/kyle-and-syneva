@@ -17,7 +17,7 @@ const qAnda= [{
     answer: "Kids are welcome at all weekend events except the ceremony and reception, during which we'll provide childcare.  Please make sure to RSVP if you're bringing kids so we can accomodate."
 }, {
     question: "What if I can only come for part of the weekend?",
-    answer: "We don't expect everyone to make the whole weekend and will be happy to see you at all! Just make sure to include your plans in the RSVP.",
+    answer: "We don't expect everyone to make the whole weekend and will be happy to see you at all! Just include your plans in the RSVP.",
 }, {
     question: "Will there be llamas?",
     answer: "Yes. Be excited.",
