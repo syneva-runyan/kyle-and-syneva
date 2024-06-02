@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './Carousel.css';
 
-function Carousel({ images }) {
+function Carousel({ images }: { images: any[] } ) {
     var settings = {
         adaptiveHeight: true,
         autoplay: true,
@@ -18,7 +18,7 @@ function Carousel({ images }) {
     return (
         <div className="carousel">
             <Slider {...settings}>
-                {images.map(img => (
+                {images.map((img: any) => (
                     <div key={img}>
                         <img alt={img} src={img} />
                     </div>

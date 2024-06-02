@@ -27,7 +27,6 @@ export default class OurStory extends Component {
                     strength={40}
                 >
                     <div
-                        alt="Georgia Tech Football Stadium"
                         className="ourStory__hero"
                     />
                 </Parallax>
@@ -42,7 +41,6 @@ export default class OurStory extends Component {
                         strength={40}
                     >
                     <div
-                            alt="separate"
                             className="ourStory__hero ourStory__heroSeparate"
                         />
                     </Parallax>
@@ -53,7 +51,6 @@ export default class OurStory extends Component {
                         strength={40}
                     >
                     <div
-                            alt="separate"
                             className="ourStory__hero ourStory__heroSeparate"
                         />
                     </Parallax>
@@ -68,7 +65,6 @@ export default class OurStory extends Component {
                     strength={40}
                 >
                    <div
-                        alt="Tired after biking"
                         className="ourStory__hero"
                     />
                 </Parallax>
@@ -79,7 +75,6 @@ export default class OurStory extends Component {
                     strength={40}
                 >
                     <div
-                        alt="Atl United Fans"
                         className="ourStory__hero"
                     />
                 </Parallax>
@@ -91,7 +86,6 @@ export default class OurStory extends Component {
                     strength={40}
                 >
                     <div
-                        alt="tough mudder"
                         className="ourStory__hero"
                     />
                 </Parallax>
@@ -103,7 +97,6 @@ export default class OurStory extends Component {
                     strength={40}
                 >
                     <div
-                        alt="two people diress for cold"
                         className="ourStory__hero"
                     />
                 </Parallax>
@@ -115,7 +108,6 @@ export default class OurStory extends Component {
                     strength={40}
                 >
                     <div
-                        alt="engagement"
                         className="ourStory__hero"
                     />
                 </Parallax>
