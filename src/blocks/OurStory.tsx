@@ -19,7 +19,7 @@ export default class OurStory extends Component {
     render() {
         return (
             <div className="ourStory">
-                <h2 className="ourStory__title ourStory__content">Kyle and Syneva met at Georgia Tech...</h2>
+                <h2 className="ourStory__title">Kyle and Syneva met at Georgia Tech</h2>
 
                 <Parallax
                     bgImage={gatechImage}
@@ -31,7 +31,7 @@ export default class OurStory extends Component {
                     />
                 </Parallax>
                 <p className="ourStory__content">
-                ...working together at the Tech Rec bowling alley.  Despite going separate ways after college (Kyle to Chicago and Syneva to London), they kept in touch.
+                They worked together at the Tech Rec bowling alley.  Despite going separate ways after college (Kyle to Chicago and Syneva to London), they kept in touch.
                 </p>
                 <div className="ourStory__separatePictures">
                     <Parallax

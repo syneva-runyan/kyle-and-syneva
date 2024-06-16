@@ -39,7 +39,7 @@ p.ourStory__content {
     position: absolute;
     left: 50%;
     background: black;
-    top: 0;
+    top: 500px;
     width: 2px;
     height: 98%;
 }
@@ -92,6 +92,10 @@ p.ourStory__content {
 }
 
 @media screen and (max-width: 450px) {
+
+    .ourStory::before {
+        background: var(--secondary--light);
+    }
     .ourStory__content {
         padding: 0 15px;
         width: 100%;
