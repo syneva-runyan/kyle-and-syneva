@@ -3,8 +3,6 @@ var stringSimilarity = require('string-similarity');
 
 const credentials = {}
 
-const weddingGuestSpreadsheetId = "1D1yBeqNg5lCgU_cYZuknOVCRVL0m3SvluUy7pfMjSfI";
-
 exports.handler = async (event = {}, context, callback = console.log) => {
   let guest = null;
   if (event.query && event.query.guest) {
@@ -48,8 +46,7 @@ function cleanContact(contact = "") {
 }
 
 /**
- * Prints the rows of the following spreadsheet
- * @see https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
+ * Prints the rows of the wedding RSVP spreadsheet
  * @param {google.auth.OAuth2} auth The authenticated Google OAuth client.
  */
 function listGuests(content, addressee, resolve, reject) {
