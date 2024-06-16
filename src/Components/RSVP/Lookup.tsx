@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./Lookup.css";
-import { lookup } from "./api";
+import { lookup, LookupResponse } from "./api";
 
 import './styles.css';
 
-export default function Lookup() {
+export default function Lookup({ setGuestInfo }: { setGuestInfo : (val: string) => {}}) {
     const [addressee, setAddressee] = useState("");
     const [suggestion, setSuggestion] = useState("");
 
@@ -14,15 +14,13 @@ export default function Lookup() {
     }
 
     const lookupRSVP = async (addressee : string) => {
-        const invite = await lookup(addressee);
-        console.log(invite);
-        // if (invite && invite.guestData) {
-        //     if(invite.guestData.match) {
-        //         setGuestInfo(invite.guestData.match);
-        //     } else if(invite.guestData.suggestion) {
-        //         setSuggestion(invite.guestData.suggestion[2]);
-        //     }
-        // }
+        const invite : LookupResponse = await lookup(addressee);
+        if (invite?.guestData?.match) {
+            setGuestInfo(invite.guestData.match);
+        } else if(invite.guestData.suggestion) {
+            setSuggestion(invite.guestData.suggestion[2]);
+        }
+        }
     }
 
     const onAddresseeChange = (value : string) => {
@@ -30,7 +28,7 @@ export default function Lookup() {
     }
 
     const lookupSuggestion = (addressee : string) => {
-        lookupRSVP(addressee);
+        // lookupRSVP(addressee);
     }
 
 
@@ -56,7 +54,7 @@ export default function Lookup() {
                     </span>
                     </div>
                 </div>
-                <button className="rsvp-lookup__btn" type="submit" onClick={lookupRSVP}>Lookup Invitation</button>
+                <button className="rsvp-lookup__btn" type="submit">Lookup Invitation</button>
             </form>
         </div>
     )

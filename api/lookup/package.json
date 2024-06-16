@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "googleapis": "^52.1.0",
     "string-similarity": "^4.0.1"
   }
 }

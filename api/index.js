@@ -11,7 +11,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/lookup-invite', (req, res) => {
-    lookup.handler(req, {}, res.send);
+    lookup.handler(req, res.send.bind(res));
 });
 
 app.listen(PORT, () => {
