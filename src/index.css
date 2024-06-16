@@ -49,6 +49,13 @@ a:hover {
   color: var(--primary--light);
 }
 
+@media screen and (max-width: 450px) {
+  body {
+    padding: 0 30px;
+    overflow-x: hidden;
+  }
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

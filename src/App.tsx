@@ -26,9 +26,9 @@ function Layout() {
   return (
     <>
       <button className="mobileNavCTA" onClick={() => setShowMenu(!showMenu)}> 
-      <span>•</span>
-      <span>•</span>
-      <span>•</span>
+        <span> </span>
+        <span> </span>
+        <span> </span>
       </button>
       <nav 
         className={`navBackground ${showMenu ? "show" : ""}`}
