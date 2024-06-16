@@ -49,6 +49,10 @@ a:hover {
   color: var(--primary--light);
 }
 
+strong {
+  color: var(--secondary--light);
+}
+
 @media screen and (max-width: 450px) {
   body {
     padding: 0 30px;
