@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
 import FAQ from './blocks/FAQ';
 import OurStory from './blocks/OurStory';
 import ComingSoon from './blocks/ComingSoon';
+import RSVP from './blocks/RSVP';
 import { useState } from 'react';
 
 export default function App() {
@@ -14,6 +15,10 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="our-story" element={<OurStory />} />
           <Route path="faq" element={<FAQ />} />
+          <Route path="rsvp" element={<RSVP />}>
+            <Route path="/rsvp/accept-confirmation" element={<ComingSoon />} />
+            <Route path="/rsvp/decline-confirmation" element={<ComingSoon />} />
+          </Route>
           <Route path="nothing-here" element={<ComingSoon />} />
         </Route>
       </Routes>
@@ -39,7 +44,7 @@ function Layout() {
             <Link to="/">Home</Link>
           </li>
           <li className='navItem'>
-            <Link to="/nothing-here">RSVP</Link>
+            <Link to="/rsvp">RSVP</Link>
           </li>
           <li className='navItem'>
             <Link to="/our-story">Our Story</Link>

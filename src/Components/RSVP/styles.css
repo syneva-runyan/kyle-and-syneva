@@ -1,0 +1,117 @@
+.rsvp-lookup {
+    text-align: center;
+}
+
+.rsvp-lookup__form {
+    padding: 0 15px;
+}
+
+.rsvp-lookup__btn {
+    display: block;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    padding: 9px 20px;
+    background: #348080;
+    border-radius: 2px;
+    transition: 0.3s;
+    margin: auto;
+}
+
+.rsvp-lookup__suggestion {
+    background: none;
+    border: 0;
+    color: #348080;
+    padding: 0;
+}
+
+.rsvp-lookup__inputs {
+    padding: 24px 0 48px;
+}
+
+.rsvp-lookup__btn:hover {
+    cursor: pointer;
+    background: #1b6161;
+}
+
+.rsvp-lookup__helper {
+    display: block;
+    color: gray;
+    font-size: 12px;
+    margin-top: 12px;
+}
+
+/* floating code modified from: https://codepen.io/elujambio/pen/yjwzGP */
+.floating-label {
+    display: inline-block;
+    position:  relative; 
+    margin-bottom:  24px; 
+    margin-left: 10px;
+    margin-right:  10px;
+}
+
+.floating-label label {
+    color: var(--secondary--light);
+    position:  absolute; 
+    top: calc(50% - 7px);
+    left:  0; 
+    opacity:  0; 
+    transition:  all .3s ease;
+    pointer-events: none;
+}
+
+.floating-label input {
+    color: var(--light-white);
+    padding: 5px;
+    transition: 0.3s all;
+    background: transparent;
+    border: 0px;
+    border-bottom: 1px solid gray;
+    outline: none;
+    width: 100%;
+}
+
+.floating-label input:not(:placeholder-shown):not(.guestName) {
+    padding: 20px 9px 5px;
+    margin-top: 1px;
+}
+
+.floating-label input:not(:placeholder-shown) + label {
+    transform:  translateY(-10px); 
+    opacity:  .7; 
+    font-size: 12px;
+    margin-left: 9px;
+    top: 10px;
+}
+
+.backgroundFlower3 {
+    position: absolute;
+    background-image: url("/images/background-flower-3.png");
+    width: 199px;
+    height: 170px;
+    background-size: cover;
+    right: 40px;
+    bottom: 60px;
+}
+
+@media (max-width:450px)  {
+    .floating-label {
+        margin: 0 0 24px;
+        width: 100%;
+    }
+    .floating-label input {
+        width: 100%;
+        font-size: 18px;
+    }
+    .rsvp-lookup__btn {
+        padding: 14px 24px;
+        font-size: 16px;
+    }
+    .backgroundFlower3 {
+        right: 15px;
+    }
+    
+    .rsvp-lookup__helper {
+        font-size: 14px;
+    }
+}

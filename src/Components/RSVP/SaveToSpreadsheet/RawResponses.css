@@ -1,0 +1,33 @@
+.rawResponses {
+    padding: 30px 0;
+}
+
+.rawResponses ul {
+    padding-left: 0;
+}
+
+.rawResponses li {
+    list-style-type: none;
+}
+.rawResponses__loader {
+    font-family: 'oregon_ldo_lightregular';
+}
+.rawResponses__header {
+    margin-bottom: 0;
+}
+
+.rawResponses__details {
+    font-size: 14px;
+    font-family: 'oregon_ldo_lightregular';
+    margin-top: 0;
+}
+
+@media (max-width:450px)  {
+    .rawResponses {
+        margin-top: -45px;
+        padding-top: 0;
+    }
+    .rawResponses__header {
+        font-size: 14px;
+    }
+}

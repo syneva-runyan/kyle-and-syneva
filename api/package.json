@@ -1,0 +1,11 @@
+{
+    "name": "localapi",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "start": "nodemon ./index.js"
+    },
+    "devDependencies": {
+        "express": "^4.19.2"
+    }
+}

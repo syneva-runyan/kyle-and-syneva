@@ -1,0 +1,86 @@
+.questionaire {
+    text-align: center;
+}
+
+.guestAttendingContainer {
+    margin-bottom: 24px;
+}
+
+.select {
+    margin-left: 10px;
+    padding: 5px;
+    color: #348080;
+}
+
+.guest_details {
+    margin: 0 0 24px;
+}
+
+.guestDetailsHeader {
+    margin: 0 0 12px;
+}
+
+.guestDetailsHelper {
+    margin-bottom: 24px;
+}
+
+.helper-text {
+    margin-top: 0;
+    font-size: 14px;
+    font-family: 'oregon_ldo_lightregular';
+}
+
+
+.guestRadio {
+    margin: 0 10px;
+}
+
+.guestRadioLabel {
+    padding-right: 12px;
+}
+
+.guestDetailsCTAs {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+}
+
+.declineBtn {
+    margin-right: 12px;
+}
+.declineBtn button {
+    background: #676767;
+}
+
+.declineBtn button:hover {
+    background: #3c3c3c;
+}
+
+.acceptBtn {
+    margin-left: 12px;
+}
+
+.error {
+    color: #c30f0f;
+    font-size: 16px;
+    margin: 0;
+}
+
+@media (max-width:450px)  {
+    .guestAttendingContainer {
+        font-size: 18px;
+    }
+    .guestDetailsHeader {
+        font-size: 18px;
+    }
+    .guest_details {
+        margin-bottom: 48px;
+        text-align: left;
+    }
+    .questionaire {
+        padding: 15px;
+    }
+    .helper-text {
+        font-size: 16px;
+    }
+}
