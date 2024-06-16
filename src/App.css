@@ -54,6 +54,7 @@ h2,
     position: fixed;
     right: 3px;
     top: 12px;
+    padding-bottom: 10px;
   }
   .mobileNavCTA span {
     background: white;
@@ -97,5 +98,12 @@ h2,
   .navItem {
     width: 100%;
     border-bottom: 1px solid;
+    padding: 7px;
+  }
+
+  .navItem a {
+    display: inline-flex;
+    font-size: 17px;
+    justify-content: center;
   }
 }

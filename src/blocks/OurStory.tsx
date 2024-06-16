@@ -31,7 +31,7 @@ export default class OurStory extends Component {
                     />
                 </Parallax>
                 <p className="ourStory__content">
-                They worked together at the Tech Rec bowling alley.  Despite going separate ways after college (Kyle to Chicago and Syneva to London), they kept in touch.
+                Kyle and Syneva met at Georgia Tech and worked together at the Tech Rec bowling alley.  Despite going separate ways after college (Kyle to Chicago and Syneva to London), they kept in touch.
                 </p>
                 <div className="ourStory__separatePictures">
                     <Parallax
