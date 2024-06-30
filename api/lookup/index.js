@@ -27,7 +27,7 @@ exports.handler = async (event = {}, callback = console.log) => {
   }
   // Load client secrets from a local file.
   const guestData = await new Promise(function (resolve, reject) {
-      getGuest(guest, returnSuccess(callback), returnError(callback));
+    getGuests(guest, returnSuccess(callback), returnError(callback));
   });
 }
 
@@ -60,6 +60,16 @@ function cleanContact(contact = "") {
   return contact;
 }
 
+// print names of other people in party
+function findPartyMembers(guests, partyName) {
+  console.log(guests)
+  const partyMembers = guests.filter(guestData => (
+    guestData[0] == partyName
+  ))
+
+  return partyMembers.map(guest => `${guest[1]} ${guest[2]}`)
+}
+
 /**
  * Load or request or authorization to call APIs.
  *
@@ -79,7 +89,7 @@ async function getAuthClient() {
 /**
  * Prints the rows of the wedding RSVP spreadsheet
  */
-async function getGuest(addressee, resolve, reject) {
+async function getGuests(addressee, resolve, reject) {
   // auth client
   const client = await getAuthClient();
 
@@ -89,21 +99,23 @@ async function getGuest(addressee, resolve, reject) {
   // get data
   client.spreadsheets.values.get({
     spreadsheetId: process.env.WEDDING_GUEST_SPREADSHEET_ID,
-    range: "'Guests'!A1:B109",
+    range: "'Guests'!A1:C112",
   }, (err, res) => {
     if (err) return `The API returned an error: ${err}`;
     const rows = res.data.values;
     if (rows.length) {
-      // Print columns A and E, which correspond to indices 0 and 4.
       const guests = rows.map((row) => {
+         // first name, last name, party
          return cleanContact(row[0]);
       });
 
-      const mostSimlular = stringSimilarity.findBestMatch(addressee, guests);
+      const mostSimlular = stringSimilarity.findBestMatch(cleanContact(addressee), guests);
       if (mostSimlular.bestMatch.rating > 0.5) {
         resolve({
-            rowColumns:rows[0],
-            match: rows[mostSimlular.bestMatchIndex]
+            match: {
+              name: rows[mostSimlular.bestMatchIndex][0],
+              partyMembers: findPartyMembers(rows, rows[mostSimlular.bestMatchIndex][0])
+            }
         });
         return;
       } else {
