@@ -1,6 +1,6 @@
 import constants from '../constants';
 
-export interface LookupResponse {
+interface LookupResponse {
     guestData?: {
         match?: string
         suggestion?: string
@@ -8,14 +8,14 @@ export interface LookupResponse {
 }
 
 // lookup invitation from name
-export  const lookup = async(addressee: string) => {
+export  const lookup = (addressee: string): Promise<LookupResponse> => {
     var xhr = new XMLHttpRequest();
     
-    const resp = await new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         xhr.addEventListener("readystatechange", function() {
         if(this.readyState === 4) {
             try {
-                resolve(JSON.parse(this.responseText));
+                resolve(JSON.parse(this.responseText).body);
             } catch(e) {
                 reject(e)
             }
@@ -26,6 +26,6 @@ export  const lookup = async(addressee: string) => {
         
         xhr.send();
     });
-
-    return resp;
 }
+
+export type { LookupResponse }

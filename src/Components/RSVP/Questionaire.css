@@ -3,6 +3,7 @@
 }
 
 .guestAttendingContainer {
+    text-align: left;
     margin-bottom: 24px;
 }
 
@@ -30,6 +31,24 @@
     font-family: 'oregon_ldo_lightregular';
 }
 
+.questionaire__guestAttendanace {
+    display: flex;
+    justify-content: space-between;
+}
+.questionaire__guestResponse {
+    display: flex;
+    align-items: center;
+}
+
+
+.questionaire label {
+    color: var(--secondary--light)
+}
+
+.questionaire__guestAttendanace p {
+    margin: 10px 0;
+}
+
 
 .guestRadio {
     margin: 0 10px;
@@ -41,19 +60,16 @@
 
 .guestDetailsCTAs {
     display: flex;
-    justify-content: center;
+    justify-content: end;
     margin-top: 48px;
 }
 
-.declineBtn {
-    margin-right: 12px;
-}
 .declineBtn button {
-    background: #676767;
+    background: var(--primary--light);
 }
 
 .declineBtn button:hover {
-    background: #3c3c3c;
+    background: var(--secondary--light);
 }
 
 .acceptBtn {

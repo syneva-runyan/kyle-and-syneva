@@ -1,10 +1,11 @@
 import { useState } from "react";
 import "./Lookup.css";
-import { lookup, LookupResponse } from "./api";
+import { lookup } from "../../api/lookup";
+import type { LookupResponse } from "../../api/lookup";
 
 import './styles.css';
 
-export default function Lookup({ setGuestInfo }: { setGuestInfo : (val: string) => {}}) {
+export default function Lookup({ setGuestInfo }: { setGuestInfo : React.Dispatch<React.SetStateAction<any>>}) {
     const [addressee, setAddressee] = useState("");
     const [suggestion, setSuggestion] = useState("");
 
@@ -17,18 +18,13 @@ export default function Lookup({ setGuestInfo }: { setGuestInfo : (val: string) 
         const invite : LookupResponse = await lookup(addressee);
         if (invite?.guestData?.match) {
             setGuestInfo(invite.guestData.match);
-        } else if(invite.guestData.suggestion) {
+        } else if(invite?.guestData?.suggestion) {
             setSuggestion(invite.guestData.suggestion[2]);
-        }
         }
     }
 
     const onAddresseeChange = (value : string) => {
         setAddressee(value)
-    }
-
-    const lookupSuggestion = (addressee : string) => {
-        // lookupRSVP(addressee);
     }
 
 
@@ -47,7 +43,7 @@ export default function Lookup({ setGuestInfo }: { setGuestInfo : (val: string) 
                             <span>Did you mean 
                             <button 
                                 className="rsvp-lookup__suggestion" 
-                                onClick={ () => lookupSuggestion(addressee)}
+                                onClick={ () => lookupRSVP(addressee)}
                             >
                                 {suggestion}
                             </button>?</span> : 'Use the name on your invitation\'s envelope, ex "Mr. Tony Soprano"'}

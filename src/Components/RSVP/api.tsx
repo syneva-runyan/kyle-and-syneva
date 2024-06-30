@@ -8,7 +8,7 @@ export  const lookup = async(addresse : string) => {
         xhr.addEventListener("readystatechange", function() {
         if(this.readyState === 4) {
             try {
-                resolve(JSON.parse(this.responseText));
+                resolve(JSON.parse(this.responseText).body);
             } catch(e) {
                 reject(e)
             }

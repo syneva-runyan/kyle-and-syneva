@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
-import { useHistory } from "react-router-dom";
-import { saveResponse } from './api';
+// import { useHistory } from "react-router-dom";
+// import { saveResponse } from './api';
 
 import './Questionaire.css';
 
@@ -34,82 +34,89 @@ function GuestDetails({ guestsAttending }) {
 export default function Questionaire({ guestInfo, setGuestResponses }) {
     const [formErrors, setErrors] = useState([]);
     const [guestsAttending, setGuestsAttending] = useState(parseInt(guestInfo[4]));
-    const history = useHistory();
+    // const history = useHistory();
     const formEl = useRef(null);
 
     const decline = async (e) => {
-        e.preventDefault();
-        const guestName = guestInfo[2] && guestInfo[2].replace("&", "and");
-        await saveResponse({
-            guestName,
-            attending: false,
-        });
-        history.push("/rsvp/decline-confirmation");
+        alert("decline");
+        // e.preventDefault();
+        // const guestName = guestInfo[2] && guestInfo[2].replace("&", "and");
+        // await saveResponse({
+        //     guestName,
+        //     attending: false,
+        // });
+        // history.push("/rsvp/decline-confirmation");
     }
 
     const getData = () => {
-        var object = {};
-        const formData = new FormData(formEl.current);
-        formData.forEach(function(value, key){
-            object[key] = value;
-        });
-        return object;
+        // var object = {};
+        // const formData = new FormData(formEl.current);
+        // formData.forEach(function(value, key){
+        //     object[key] = value;
+        // });
+        // return object;
     }
 
     const isValid = data => {
-        let errors = [];
-        Object.keys(data).forEach(key => {
-            if(data[key] === "" || data[key] == null) {
-                errors.push(key);
-            }
-        });
+        // let errors = [];
+        // Object.keys(data).forEach(key => {
+        //     if(data[key] === "" || data[key] == null) {
+        //         errors.push(key);
+        //     }
+        // });
 
-        return errors;
+        // return errors;
     }
 
     const accept = async (e) => {
-        e.preventDefault();
-        if(formEl.current) {
-            const data = getData();
-            const errors = isValid(data);
-            if(errors.length === 0) {
-                setGuestResponses(data);
-                const guestName = guestInfo[2] && guestInfo[2].replace("&", "and");
-                await saveResponse({
-                    guestName,
-                    attending: true,
-                    ...data,
-                });
-            } else {
-                setErrors(errors);
-                return;
-            }
-        }
-        history.push("/rsvp/accept-confirmation");
+        alert("accept")
+        // e.preventDefault();
+        // if(formEl.current) {
+        //     const data = getData();
+        //     const errors = isValid(data);
+        //     if(errors.length === 0) {
+        //         setGuestResponses(data);
+        //         const guestName = guestInfo[2] && guestInfo[2].replace("&", "and");
+        //         await saveResponse({
+        //             guestName,
+        //             attending: true,
+        //             ...data,
+        //         });
+        //     } else {
+        //         setErrors(errors);
+        //         return;
+        //     }
+        // }
+        // history.push("/rsvp/accept-confirmation");
     }
     return (
         <div className="questionaire">
-            <h3>{guestInfo[2]}</h3>
+            <h3>{guestInfo.name}</h3>
             <form ref={formEl}>
                 <div className="guestAttendingContainer">
                     <label htmlFor="guestsAttending">
-                        Guests attending (including yourself)
+                        Attendance
                     </label>
-                    <select className="select" value={guestsAttending} name="guestsAttending" onChange={(e) => { 
-                        setGuestsAttending(e.target.value);
-                        setErrors([]);
-                    }}>
-                        {([...Array(parseInt(guestInfo[4]) + 1).keys() ]).map(i => (
-                            <option value={i} key={i}>{i}</option>
+                        {guestInfo.partyMembers.map((name: string) => (
+                            <div className="questionaire__guestAttendanace" key={name}>
+                                <p>{name}</p>
+                                <div className="questionaire__guestResponse">
+                                    <select className="select" value={guestsAttending} name="guestsAttending" onChange={(e) => { 
+                                        setGuestsAttending(e.target.value);
+                                        setErrors([]);
+                                    }}>
+                                        <option selected value={"attending"}>Attending</option>
+                                        <option value={"not"}>Sadly Can Not</option>
+                                    </select>
+                                </div>
+                            </div>
                         ))}
-                    </select>
                 </div>
                 {parseInt(guestsAttending) > 0 && <GuestDetails guestsAttending={guestsAttending} />}
                 {formErrors.length > 0 ? <p class="error">Please answer all questions.</p> : null}
                 <div className="guestDetailsCTAs">
                     <div className="declineBtn">
-                        <button className="rsvp-lookup__btn" type="submit" onClick={decline}>Decline</button>
-                        <p className="helper-text">with regrets</p>
+                        <button className="rsvp-lookup__btn" type="submit" onClick={decline}>Next</button>
                     </div>
                     {parseInt(guestsAttending) > 0 && 
                         <div className="acceptBtn">
