@@ -14,7 +14,7 @@ const qAnda= [{
     answer: "If coming from out of town, we recommend flying into Atlanta.  We're considering providing transportation from Atlanta to Hawkedene Thursday & Friday evenings then back to Atlanta Sunday. Come back here for more details soon."
 }, {
     question: "Are kids invited?",
-    answer: "Kids are welcome at all weekend events except the ceremony and reception, during which we'll provide childcare.  Please make sure to RSVP if you're bringing kids so we can accomodate."
+    answer: "Kids are welcome at all weekend events except the ceremony and reception, during which we'll provide childcare (local babysitters).  Please make sure to RSVP if you're bringing kids so we can accomodate."
 }, {
     question: "What if I can only come for part of the weekend?",
     answer: "We don't expect everyone to make the whole weekend and will be happy to see you at all! Just include your plans in the RSVP.",

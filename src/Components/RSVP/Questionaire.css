@@ -60,15 +60,15 @@
 
 .guestDetailsCTAs {
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     margin-top: 48px;
 }
 
-.declineBtn button {
+.nextBtn button {
     background: var(--primary--light);
 }
 
-.declineBtn button:hover {
+.nextBtn button:hover {
     background: var(--secondary--light);
 }
 
@@ -80,6 +80,10 @@
     color: #c30f0f;
     font-size: 16px;
     margin: 0;
+}
+
+.szh-accordion {
+    text-align: left;
 }
 
 @media (max-width:450px)  {

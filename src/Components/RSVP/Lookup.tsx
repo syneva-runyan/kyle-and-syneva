@@ -7,7 +7,7 @@ import './styles.css';
 
 export default function Lookup({ setGuestInfo }: { setGuestInfo : React.Dispatch<React.SetStateAction<any>>}) {
     const [addressee, setAddressee] = useState("");
-    const [suggestion, setSuggestion] = useState("");
+    const [suggestion, setSuggestion] = useState({ name: "", partyMembers: ""});
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -19,7 +19,7 @@ export default function Lookup({ setGuestInfo }: { setGuestInfo : React.Dispatch
         if (invite?.guestData?.match) {
             setGuestInfo(invite.guestData.match);
         } else if(invite?.guestData?.suggestion) {
-            setSuggestion(invite.guestData.suggestion[2]);
+            setSuggestion(invite.guestData.suggestion);
         }
     }
 
@@ -39,13 +39,13 @@ export default function Lookup({ setGuestInfo }: { setGuestInfo : React.Dispatch
                         <label 
                             htmlFor="first-name">Invitation Addressee</label>
                     <span className="rsvp-lookup__helper">
-                        {suggestion ?
-                            <span>Did you mean 
+                        {suggestion?.name ?
+                            <span>Did you mean{" "} 
                             <button 
-                                className="rsvp-lookup__suggestion" 
-                                onClick={ () => lookupRSVP(addressee)}
+                                className="rsvp-lookup__suggestion asside" 
+                                onClick={ () => setGuestInfo(suggestion) }
                             >
-                                {suggestion}
+                                {suggestion.name}
                             </button>?</span> : 'Use the name on your invitation\'s envelope, ex "Mr. Tony Soprano"'}
                     </span>
                     </div>

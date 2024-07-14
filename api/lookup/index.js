@@ -99,7 +99,7 @@ async function getGuests(addressee, resolve, reject) {
   // get data
   client.spreadsheets.values.get({
     spreadsheetId: process.env.WEDDING_GUEST_SPREADSHEET_ID,
-    range: "'Guests'!A1:C112",
+    range: "'Guests'!A1:C119",
   }, (err, res) => {
     if (err) return `The API returned an error: ${err}`;
     const rows = res.data.values;
@@ -110,18 +110,18 @@ async function getGuests(addressee, resolve, reject) {
       });
 
       const mostSimlular = stringSimilarity.findBestMatch(cleanContact(addressee), guests);
+      const mostSimlularParty = {
+          name: rows[mostSimlular.bestMatchIndex][0],
+          partyMembers: findPartyMembers(rows, rows[mostSimlular.bestMatchIndex][0])
+      }
       if (mostSimlular.bestMatch.rating > 0.5) {
         resolve({
-            match: {
-              name: rows[mostSimlular.bestMatchIndex][0],
-              partyMembers: findPartyMembers(rows, rows[mostSimlular.bestMatchIndex][0])
-            }
+            match: mostSimlularParty
         });
         return;
       } else {
         resolve({
-            rowColumns:rows[0],
-            suggestion: rows[mostSimlular.bestMatchIndex]
+            suggestion: mostSimlularParty
         });
         return;
       }

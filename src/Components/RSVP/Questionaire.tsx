@@ -1,129 +1,188 @@
 import React, { useState, useRef } from "react";
+import { Accordion, AccordionItem } from '@szhsin/react-accordion';
+
 // import { useHistory } from "react-router-dom";
 // import { saveResponse } from './api';
 
 import './Questionaire.css';
+import { WeddingWeekendText } from "../WeddingWeekend";
 
-function GuestDetails({ guestsAttending }) {
+interface partyMemberType {
+    name: string,
+    attending: boolean,
+    eventsAttending: {
+        "Thursday evening dinner and event": boolean,
+        "Friday afternoon lunch and activity": boolean,
+        "Friday evening rehersal dinner": boolean,
+        "Saturday wedding and reception": boolean
+    },
+    foodPreferences: string,
+    additionalComments: string,
+    stayingOnsite: boolean,
+  }
+
+  interface guestInfoType {
+   name: string,
+   partyMembers: partyMemberType[]
+  }
+  
+  interface guestInfoResponse {
+    name: string,
+    partyMembers: string[]
+   }
+
+const defaultRSVP = {
+    attending: true,
+    eventsAttending: {
+        "Thursday evening dinner and event": false,
+        "Friday afternoon lunch and activity": false,
+        "Friday evening rehersal dinner": false,
+        "Saturday wedding and reception": false
+    },
+    stayingOnsite: true,
+    foodPreferences: "",
+    additionalComments: "",
+}
+
+function Attending(
+    { guestRSVP, setRSVP }:
+    { guestRSVP: guestInfoType,
+        setRSVP: (partyMemberIndex: number, field: string, value: any) => void }) {
+    const attendingFieldName = "attending";
+    const attendingValue = {
+        "true": "attending",
+        "false": "not"
+    }
     return (
-        <>
-            <h4 className="guestDetailsHeader">Food</h4>
-            <p className="helper-text guestDetailsHelper">For each guest, please select an entrée</p>
-            {
-                [...Array(parseInt(guestsAttending)).keys()].map(i => (
-                    <div className="guest_details" key={`guest-details${i + 1}`}>
-                        <div className="floating-label guestName">
-                            <input name={`guest${i + 1}Name`} placeholder={`Guest ${i + 1} Name`} />
-                            <label htmlFor={`guest${i + 1}Name`}>Guest {i + 1} Name</label>
-                        </div>
-                        { /** Food */}
-                        <input className="guestRadio"  type="radio" id="Chicken" name={`guest${i + 1}Food`}  value="Chicken" />
-                        <label className="guestRadioLabel" htmlFor="Chicken">Chicken</label>
-                        <input className="guestRadio" type="radio" id="Vegetarian" name={`guest${i + 1}Food`}  value="Vegetarian"/>
-                        <label className="guestRadioLabel" htmlFor="Vegetarian">Vegetarian</label>
-                        <input className="guestRadio" type="radio" id="Beef" name={`guest${i + 1}Food`}  value="Beef" />
-                        <label className="guestRadioLabel" htmlFor="Beef">Beef</label>
+        <div className="guestAttendingContainer">
+        <label htmlFor="guestsAttending">
+            Attendance
+        </label>
+            {guestRSVP.partyMembers.map(({name, attending } : partyMemberType, index: number) => (
+                <div className="questionaire__guestAttendanace" key={name}>
+                    <p>{name}</p>
+                    <div className="questionaire__guestResponse">
+                        <select
+                            className="select"
+                            value={attendingValue[attending?.toString() || "true"]}
+                            name="guestsAttending" 
+                            onChange={(e) => {
+                                const attending: boolean = e.target.value == attendingValue["true"] || false;
+                                setRSVP(index, attendingFieldName, attending);
+                            }}
+                        >
+                            <option value={attendingValue["true"]}>Attending</option>
+                            <option value={attendingValue["false"]}>Sadly Can Not</option>
+                        </select>
                     </div>
-                )
-                ) 
-            }
-        </>
+                </div>
+            ))}
+            {guestRSVP.partyMembers.length > 2 && <p className="asside asside--noTop">Kids are welcome at all weekend events except the ceremony and reception, during which we'll provide childcare (local babysitters).</p>}
+    </div>
     )
 }
 
-export default function Questionaire({ guestInfo, setGuestResponses }) {
-    const [formErrors, setErrors] = useState([]);
-    const [guestsAttending, setGuestsAttending] = useState(parseInt(guestInfo[4]));
-    // const history = useHistory();
+function GuestResponse({ partyMembers, setRSVP } : { partyMembers: partyMemberType[], setRSVP: (partyMemberIndex: number, field: string, value: any) => void  }) {
+    const attending: partyMemberType[] = partyMembers.filter(member => member.attending);
+    const foodAllergiesKeyName = "foodPreferences";
+    return (
+        <div>
+            <Accordion>
+                <AccordionItem header="Questions about Thursday?">
+                    <WeddingWeekendText />
+                </ AccordionItem>
+            </Accordion>
+            { attending.map(({ name, eventsAttending, foodPreferences } : partyMemberType, index: number) => (
+                <div className="guestAttendingContainer" key={name}>
+                    <p>Select the events {name} will be attending</p>
+                        {
+                            Object.keys(eventsAttending).map((eventName: string) => (
+                                <div key={`${index}${eventName}`}>
+                                    <input 
+                                        type="checkbox" 
+                                        id={`guest${index}eventAttendance`} 
+                                        name={eventName} 
+                                        value={eventsAttending[eventName]}
+                                        onClick={(e) => {
+                                            const updatedEvents = {
+                                                ...eventsAttending,
+                                            }
+                                            updatedEvents[eventName] = e.target.value;
+                                            setRSVP(index, "eventsAttending", updatedEvents)
+                                        }}
+                                    />
+                                    <label htmlFor={`guest${index}eventAttendance`}>{eventName}</label>
+                                </div>
+                            ))
+                        }
+                    <div>
+                        <label htmlFor={`guest${index}FoodAllergies`}>Any dietary restrictions or preferences?</label><br></br>
+                        <textarea 
+                            id={`guest${index}FoodAllergies`} 
+                            name={foodAllergiesKeyName} 
+                            value={foodPreferences}
+                            onChange={(e) => {
+                                setRSVP(index, foodAllergiesKeyName, e.target.value)
+                            }}
+                        />
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+}
+
+export default function Questionaire({ guestInfo }: { guestInfo: guestInfoResponse }) {
+    const [questionIndex, setQuestionIndex] = useState(0);
+    const [guestRSVP, setGuestRSVP] = useState(
+        { ...guestInfo, 
+            partyMembers: guestInfo.partyMembers.map((name: string) => (
+                { name, ...defaultRSVP }
+            ))
+        }
+    );
+
     const formEl = useRef(null);
 
-    const decline = async (e) => {
-        alert("decline");
-        // e.preventDefault();
-        // const guestName = guestInfo[2] && guestInfo[2].replace("&", "and");
-        // await saveResponse({
-        //     guestName,
-        //     attending: false,
-        // });
-        // history.push("/rsvp/decline-confirmation");
+    const back = async (e) => {
+        e.preventDefault();
+        setQuestionIndex(questionIndex - 1);
+    }
+    const next = async (e) => {
+        e.preventDefault();
+        setQuestionIndex(questionIndex + 1);
     }
 
-    const getData = () => {
-        // var object = {};
-        // const formData = new FormData(formEl.current);
-        // formData.forEach(function(value, key){
-        //     object[key] = value;
-        // });
-        // return object;
+    const setRSVP = (partyMemberIndex: number, field: string, value: any) => {
+        const updatedResponse = { ...guestRSVP };
+        // @ts-ignore
+        updatedResponse.partyMembers[partyMemberIndex][field] = value
+        setGuestRSVP(updatedResponse);
     }
 
-    const isValid = data => {
-        // let errors = [];
-        // Object.keys(data).forEach(key => {
-        //     if(data[key] === "" || data[key] == null) {
-        //         errors.push(key);
-        //     }
-        // });
-
-        // return errors;
+    function getQuestion(questionIndex: number){
+        switch (questionIndex) {
+            case 0:
+                return <Attending guestRSVP={guestRSVP} setRSVP={setRSVP} />
+            case 1:
+                return <GuestResponse partyMembers={guestRSVP.partyMembers} setRSVP={setRSVP} />
+            default:
+                <Attending guestRSVP={guestRSVP} setRSVP={setRSVP} />;
+        }
     }
 
-    const accept = async (e) => {
-        alert("accept")
-        // e.preventDefault();
-        // if(formEl.current) {
-        //     const data = getData();
-        //     const errors = isValid(data);
-        //     if(errors.length === 0) {
-        //         setGuestResponses(data);
-        //         const guestName = guestInfo[2] && guestInfo[2].replace("&", "and");
-        //         await saveResponse({
-        //             guestName,
-        //             attending: true,
-        //             ...data,
-        //         });
-        //     } else {
-        //         setErrors(errors);
-        //         return;
-        //     }
-        // }
-        // history.push("/rsvp/accept-confirmation");
-    }
     return (
         <div className="questionaire">
             <h3>{guestInfo.name}</h3>
             <form ref={formEl}>
-                <div className="guestAttendingContainer">
-                    <label htmlFor="guestsAttending">
-                        Attendance
-                    </label>
-                        {guestInfo.partyMembers.map((name: string) => (
-                            <div className="questionaire__guestAttendanace" key={name}>
-                                <p>{name}</p>
-                                <div className="questionaire__guestResponse">
-                                    <select className="select" value={guestsAttending} name="guestsAttending" onChange={(e) => { 
-                                        setGuestsAttending(e.target.value);
-                                        setErrors([]);
-                                    }}>
-                                        <option selected value={"attending"}>Attending</option>
-                                        <option value={"not"}>Sadly Can Not</option>
-                                    </select>
-                                </div>
-                            </div>
-                        ))}
-                </div>
-                {parseInt(guestsAttending) > 0 && <GuestDetails guestsAttending={guestsAttending} />}
-                {formErrors.length > 0 ? <p class="error">Please answer all questions.</p> : null}
+                {getQuestion(questionIndex)}
                 <div className="guestDetailsCTAs">
-                    <div className="declineBtn">
-                        <button className="rsvp-lookup__btn" type="submit" onClick={decline}>Next</button>
+                    <div className="">
+                        <button className="rsvp-lookup__btn" onClick={back}>Back</button>
                     </div>
-                    {parseInt(guestsAttending) > 0 && 
-                        <div className="acceptBtn">
-                            <button className="rsvp-lookup__btn" type="submit" onClick={accept}>Accept</button>
-                            <p className="helper-text">with pleasure</p>
-                        </div>
-                    }
+                    <div className="nextBtn">
+                        <button className="rsvp-lookup__btn" onClick={next}>Next</button>
+                    </div>
                 </div>
             </form>
         </div>

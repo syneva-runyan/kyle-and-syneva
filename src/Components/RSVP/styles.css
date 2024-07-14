@@ -1,3 +1,22 @@
+.asside {
+    background: none;
+    border: 0;
+    color: #348080;
+    padding: 0;
+}
+
+button.asside {
+    cursor: pointer;
+}
+
+button.asside:hover {
+    color: var(--primary--light);
+}
+
+.asside--noTop {
+    margin-top: 0;
+}
+
 .rsvp-lookup {
     text-align: center;
 }
@@ -16,13 +35,6 @@
     border-radius: 2px;
     transition: 0.3s;
     margin: auto;
-}
-
-.rsvp-lookup__suggestion {
-    background: none;
-    border: 0;
-    color: #348080;
-    padding: 0;
 }
 
 .rsvp-lookup__inputs {
