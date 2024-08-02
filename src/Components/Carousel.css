@@ -11,9 +11,19 @@
     max-height: 65vh;
 }
 
+.carousel .slick-slide div {
+    display: flex;
+}
+
+
 .carousel .slick-slide img {
     width: 101%;
 }
+
+.carousel .slick-arrow:before {
+    color: var(--primary--light);
+}
+
 
 @media (max-width:450px)  {
     .carousel .slick-slider {

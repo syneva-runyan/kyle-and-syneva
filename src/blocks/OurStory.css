@@ -14,7 +14,7 @@
     z-index: 1;
     position: relative;
     line-height: 1.5;
-    background-color: var(--primary--dark);
+    background-color: white;
 }
 
 .ourStory__separatePictures {
@@ -95,6 +95,16 @@ p.ourStory__content {
     transform: none !important;
 }
 
+
+@media screen and (min-width: 1000px) {
+    .react-parallax {
+        width: 30%;
+    }
+
+    .ourStory__hero {
+        height: 300px;
+    }
+}
 @media screen and (max-width: 650px) {
     .react-parallax {
         width: 50%;
