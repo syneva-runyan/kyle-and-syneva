@@ -38,6 +38,7 @@ h2,
   text-decoration: none;
   transition: 0.25s all;
   text-transform: uppercase;
+  color: var(--nav);
 }
 .mobileNavCTA {
   display: none;
@@ -57,7 +58,7 @@ h2,
     padding-bottom: 10px;
   }
   .mobileNavCTA span {
-    background-color: var(--secondary--dark);
+    background-color: var(--nav);
     width: 20px;
     height: 3px;
     margin-bottom: 6px;
@@ -66,7 +67,7 @@ h2,
   .nav {
     top: 0;
     flex-direction: column;
-    background-color: white;
+    background-color: var(--background);
     position: fixed;
     padding: 0 30px;
     z-index: 3;

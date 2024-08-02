@@ -16,7 +16,35 @@
   --secondary--dark: #082D25;
 
   --text: #474646;
+  --background: white;
+  --on--background: var(--primary--dark);
+  --nav: --var(--secondary--light);
+  --date--info: --var(--secondary--light);
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #151414;
+    --on--background: #e4d8d8;
+    --text: var(--on--background);
+    --nav: #908c8c;
+    --date--info: #908c8c;
+  }
+
+  img {
+    filter: grayscale(25%);
+  }
+
+}
+
+@media (prefers-color-scheme: dark) and (max-width: 425px) {
+  :root {
+    --nav: var(--primary--light);
+    --date--info: var(--secondary--light);
+  }
+}
+
+
 
 body {
   margin: 0;
@@ -29,7 +57,7 @@ body {
   padding: 0 45px;
   font-size: 20px;
   align-items: start;
-  background-color: white;
+  background-color: var(--background);
 }
 
 h1 {
@@ -38,7 +66,7 @@ h1 {
 }
 
 h1, h2 {
-  color: var(--primary--dark);
+  color: var(--on--background);
 
 }
 
@@ -63,15 +91,5 @@ strong {
   body {
     padding: 0 30px;
     overflow-x: hidden;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  button {
-    background-color: #f9f9f9;
   }
 }
