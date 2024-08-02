@@ -21,7 +21,7 @@
 }
 
 .carousel .slick-arrow:before {
-    color: var(--primary--light);
+    color: var(--secondary--light);
 }
 
 
