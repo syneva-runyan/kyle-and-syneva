@@ -49,7 +49,7 @@ p.ourStory__content {
 .ourStory__title {
     font-family: 'reeyregular';
     text-transform: none;
-    margin-bottom: 45px;
+    margin-bottom: 40px;
 }
 
 .react-parallax {
@@ -143,7 +143,7 @@ p.ourStory__content {
     }
 
     .ourStory__hero {
-        height: 350px;
+        height: 250px;
     }
 
     .ourStory__separatePictures img {
