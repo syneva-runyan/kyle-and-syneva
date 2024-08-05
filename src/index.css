@@ -18,8 +18,8 @@
   --text: #474646;
   --background: white;
   --on--background: var(--primary--dark);
-  --nav: --var(--secondary--light);
-  --date--info: --var(--secondary--light);
+  --nav: var(--secondary--light);
+  --date--info: var(--secondary--light);
 }
 
 @media (prefers-color-scheme: dark) {
