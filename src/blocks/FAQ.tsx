@@ -7,11 +7,11 @@ interface FAQInterface {
 
 const qAnda= [{
     question: "Where to stay?",
-    answer: "There are cabin and hotel-like rooms available at Hawkedene for the wedding weekend. More details coming soon."
+    answer: "There are cabin and hotel-like rooms available at Hawkesdene for the wedding weekend. More details coming soon."
 }, 
     {
     question: "How do I get to Hawkesdene?",
-    answer: "If coming from out of town, we recommend flying into Atlanta.  We're considering providing transportation from Atlanta to Hawkedene Thursday & Friday evenings then back to Atlanta Sunday. Come back here for more details soon."
+    answer: "If coming from out of town, we recommend flying into Atlanta.  We're considering providing transportation from Atlanta to Hawkesdene Thursday & Friday evenings then back to Atlanta Sunday. Come back here for more details soon."
 }, {
     question: "Are kids invited?",
     answer: "Kids are welcome at all weekend events except the ceremony and reception, during which we'll provide childcare (local babysitters).  Please make sure to RSVP if you're bringing kids so we can accomodate."
