@@ -7,7 +7,7 @@ interface FAQInterface {
 
 const qAnda= [{
     question: "Where to stay?",
-    answer: "There are cabin and hotel-like rooms available at Hawkesdene for the wedding weekend. More details coming soon."
+    answer: "Luxury accommodations and meals will be available at Hawkedene Estate for the weekend of the wedding. More details coming soon."
 }, 
     {
     question: "How do I get to Hawkesdene?",
