@@ -2,6 +2,33 @@
     text-align: center;
 }
 
+.questionaire__accordion button {
+    background-color: transparent;
+    border: 0;
+    font-style: italic;
+    padding: 0;
+}
+
+.questionaire__accordion button::after {
+    content: '';
+    border: solid var(--primary--light);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(-45deg);
+    margin-left: 5px;
+    transition: 0.25s;
+}
+
+.questionaire__accordion.szh-accordion__item--expanded button::after {
+    transform: rotate(-135deg);
+}
+
+.szh-accordion__item-content {
+    font-size: 16px;
+    border-bottom:  1px solid var(--primary--light);
+}
+
 .guestAttendingContainer {
     text-align: left;
     margin-bottom: 24px;
@@ -10,7 +37,6 @@
 .select {
     margin-left: 10px;
     padding: 5px;
-    color: #348080;
 }
 
 .guest_details {
@@ -43,6 +69,15 @@
 
 .questionaire label {
     color: var(--secondary--light)
+}
+
+.questionaire .questionaire__foodlabel {
+    color: inherit;
+}
+
+.questionaire textarea {
+    min-width: 50%;
+    min-height: 100px;
 }
 
 .questionaire__guestAttendanace p {

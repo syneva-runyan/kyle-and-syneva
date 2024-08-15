@@ -88,7 +88,7 @@ function GuestResponse({ partyMembers, setRSVP } : { partyMembers: partyMemberTy
     return (
         <div>
             <Accordion>
-                <AccordionItem header="Questions about Thursday?">
+                <AccordionItem className="questionaire__accordion" header="Questions about Thursday?">
                     <WeddingWeekendText />
                 </ AccordionItem>
             </Accordion>
@@ -96,27 +96,31 @@ function GuestResponse({ partyMembers, setRSVP } : { partyMembers: partyMemberTy
                 <div className="guestAttendingContainer" key={name}>
                     <p>Select the events {name} will be attending</p>
                         {
-                            Object.keys(eventsAttending).map((eventName: string) => (
-                                <div key={`${index}${eventName}`}>
-                                    <input 
-                                        type="checkbox" 
-                                        id={`guest${index}eventAttendance`} 
-                                        name={eventName} 
-                                        value={eventsAttending[eventName]}
-                                        onClick={(e) => {
-                                            const updatedEvents = {
-                                                ...eventsAttending,
-                                            }
-                                            updatedEvents[eventName] = e.target.value;
-                                            setRSVP(index, "eventsAttending", updatedEvents)
-                                        }}
-                                    />
-                                    <label htmlFor={`guest${index}eventAttendance`}>{eventName}</label>
-                                </div>
-                            ))
+                            Object.keys(eventsAttending).map((eventName: string) => {
+                                const onClick = (e: { target: { value: any; }; }) => {
+                                    e.preventDefault();
+                                    const updatedEvents = {
+                                        ...eventsAttending,
+                                    }
+                                    updatedEvents[eventName] = !updatedEvents[eventName];
+                                    setRSVP(index, "eventsAttending", updatedEvents)
+                                };
+                                return (
+                                    <div key={`${index}${eventName}`}>
+                                        <input 
+                                            type="checkbox" 
+                                            id={`guest${index}eventAttendance`} 
+                                            name={eventName} 
+                                            checked={eventsAttending[eventName]}
+                                            onClick={onClick}
+                                        />
+                                        <label onClick={onClick} htmlFor={`guest${index}eventAttendance`}>{eventName}</label>
+                                    </div>
+                                )
+                            })
                         }
                     <div>
-                        <label htmlFor={`guest${index}FoodAllergies`}>Any dietary restrictions or preferences?</label><br></br>
+                        <label className="questionaire__foodlabel" htmlFor={`guest${index}FoodAllergies`}>Any dietary restrictions or preferences?</label><br></br>
                         <textarea 
                             id={`guest${index}FoodAllergies`} 
                             name={foodAllergiesKeyName} 
@@ -178,7 +182,7 @@ export default function Questionaire({ guestInfo }: { guestInfo: guestInfoRespon
                 {getQuestion(questionIndex)}
                 <div className="guestDetailsCTAs">
                     <div className="">
-                        <button className="rsvp-lookup__btn" onClick={back}>Back</button>
+                        { questionIndex > 0 && <button className="rsvp-lookup__btn" onClick={back}>Back</button> }
                     </div>
                     <div className="nextBtn">
                         <button className="rsvp-lookup__btn" onClick={next}>Next</button>
