@@ -138,4 +138,8 @@
     .helper-text {
         font-size: 16px;
     }
+
+    .questionaire textarea {
+        min-width: 100%;
+    }
 }
