@@ -19,9 +19,7 @@ function Carousel({ images }: { images: any[] } ) {
         <div className="carousel">
             <Slider {...settings}>
                 {images.map((img: any) => (
-                    <div key={img}>
-                        <img alt={img} src={img} />
-                    </div>
+                    <img key={img} alt={img} src={img} />
                 ))}
             </Slider>
         </div>

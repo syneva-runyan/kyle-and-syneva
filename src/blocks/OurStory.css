@@ -14,7 +14,7 @@
     z-index: 1;
     position: relative;
     line-height: 1.5;
-    background-color: var(--primary--dark);
+    background-color: var(--background);
 }
 
 .ourStory__separatePictures {
@@ -35,7 +35,7 @@ p.ourStory__content {
     margin-top: 10px;
 }
 
-.ourStory::before {
+/* .ourStory::before {
     content: "";
     position: absolute;
     left: 50%;
@@ -44,12 +44,12 @@ p.ourStory__content {
     height: 98%;
     background: var(--secondary--light);
     height: 85%;
-}
+} */
 
 .ourStory__title {
     font-family: 'reeyregular';
     text-transform: none;
-    margin-bottom: 15px;
+    margin-bottom: 40px;
 }
 
 .react-parallax {
@@ -95,6 +95,16 @@ p.ourStory__content {
     transform: none !important;
 }
 
+
+@media screen and (min-width: 1000px) {
+    .react-parallax {
+        width: 30%;
+    }
+
+    .ourStory__hero {
+        height: 300px;
+    }
+}
 @media screen and (max-width: 650px) {
     .react-parallax {
         width: 50%;
@@ -133,7 +143,7 @@ p.ourStory__content {
     }
 
     .ourStory__hero {
-        height: 350px;
+        height: 250px;
     }
 
     .ourStory__separatePictures img {

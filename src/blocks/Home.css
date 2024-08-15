@@ -13,7 +13,7 @@
 }
 
 .date {
-    color: var(--secondary--light);
+    color: var(--date--info);
     margin-bottom: 50px;
     text-align: center;
     text-transform: uppercase;
@@ -21,7 +21,7 @@
 }
 
 .date a {
-    color: var(--secondary--light);
+    color: var(--date--info);
     text-decoration: none;
 }
 
