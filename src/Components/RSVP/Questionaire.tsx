@@ -20,7 +20,7 @@ export interface partyMemberType {
     },
     foodPreferences: string,
     additionalComments: string,
-    stayingOnsite: boolean,
+    stayingOnsite: "no" | "yes-sat" | "yes-thur-sat" | "yes-fri-sat" | null,
 }
 
 interface partyMemberServerResponseType {
@@ -28,7 +28,7 @@ interface partyMemberServerResponseType {
     isAdult: boolean,
 }
   
-interface guestInfoResponse {
+export interface guestInfoResponse {
     name: string,
     partyMembers: partyMemberServerResponseType[]
 }
@@ -47,12 +47,13 @@ const defaultRSVP = {
         "Friday evening rehersal dinner": false,
         "Saturday wedding and reception": false
     },
-    stayingOnsite: true,
+    stayingOnsite: null,
     foodPreferences: "",
     additionalComments: "",
 }
 
-export default function Questionaire({ guestInfo }: { guestInfo: guestInfoResponse }) {
+export default function Questionaire({ guestInfo, onConfirmation }: { guestInfo: guestInfoResponse, onConfirmation: (guestRSVP: guestInfoType) => void }) {
+    const [finalConfirmation, setFinalConfirmation] = useState(true)
     const [questionIndex, setQuestionIndex] = useState(0);
     const [guestRSVP, setGuestRSVP] = useState(
         { ...guestInfo, 
@@ -87,10 +88,14 @@ export default function Questionaire({ guestInfo }: { guestInfo: guestInfoRespon
             case 1:
                 return <ResponseDetails partyMembers={guestRSVP.partyMembers} setRSVP={setRSVP} />
             case 2:
-                return <StayingOnsite partyMembers={guestRSVP.partyMembers} setRSVP={setRSVP}  />
+                return <StayingOnsite finalConfirmation={finalConfirmation} partyMembers={guestRSVP.partyMembers} setRSVP={setRSVP} setFinalConfirmation={setFinalConfirmation} />
             default:
                 <Attending guestRSVP={guestRSVP} setRSVP={setRSVP} />;
         }
+    }
+
+    function confirm() {
+        onConfirmation(guestRSVP);
     }
 
     return (
@@ -103,7 +108,13 @@ export default function Questionaire({ guestInfo }: { guestInfo: guestInfoRespon
                         { questionIndex > 0 && <button className="rsvp-lookup__btn" onClick={back}>Back</button> }
                     </div>
                     <div className="nextBtn">
-                        <button className="rsvp-lookup__btn" onClick={next}>Next</button>
+                        <button 
+                            className="rsvp-lookup__btn"
+                            onClick={questionIndex == 2 ? confirm : next}
+                            disabled={questionIndex == 2 && !finalConfirmation}
+                        >
+                            {questionIndex == 2 ? "Submit" : "Next"}
+                        </button>
                     </div>
                 </div>
             </form>

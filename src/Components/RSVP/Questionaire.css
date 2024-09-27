@@ -70,10 +70,16 @@
     display: flex;
     justify-content: space-between;
     margin-top: 48px;
+    margin-bottom: 48px;
 }
 
 .nextBtn button {
     background: var(--primary--light);
+}
+
+.nextBtn button:disabled {
+    background-color: gray;
+    pointer-events: none;
 }
 
 .nextBtn button:hover {

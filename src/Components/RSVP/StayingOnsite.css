@@ -11,5 +11,11 @@
     color: var(--primary--light);
 }
 
+.staying-onsite__formDetails li {
+    font-size: 18px;
+    color: var(--primary--dark);
+    margin-bottom: 15px;
+}
+
 
 

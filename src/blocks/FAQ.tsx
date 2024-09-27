@@ -21,11 +21,11 @@ questions: [{
 },
 {
     question: "How much do on-site accomodations cost?",
-    answer: "A room on-site costs $200/party for the weekend or $100/party if you're staying only Saturday. This is inclusive of any numbers of nights + meals and snacks while on-site. We have subsidized the room costs to encourage attandance 😊"
+    answer: "A room on-site costs $200/party for the weekend or $100/party if you're staying only Saturday. This is inclusive of the room + meals and snacks while on-site. We have subsidized the room costs to encourage attandance 😊"
 }, 
 {
     question: "What do the accomodations looks like?",
-    answer: "You can read more about and see pictures of the accomodations on <a href=\"https://www.hawkesdene.com/accommodations/\" target=\"__blank\" rel=\"noopener noreferrer\">Hawesdene's website</a>."
+    answer: "You can read more about and see pictures of the accomodations on <a href=\"https://www.hawkesdene.com/accommodations/\" target=\"__blank\" rel=\"noopener noreferrer\">Hawesdene's website</a>. Syneva and Kyle are in-charge of assigning parties to rooms or cabins."
 },
 {
     exludeFromRsvp: "true",
