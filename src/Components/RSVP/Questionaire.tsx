@@ -1,14 +1,16 @@
-import React, { useState, useRef } from "react";
-import { Accordion, AccordionItem } from '@szhsin/react-accordion';
+import { useState, useRef } from "react";
 
 // import { useHistory } from "react-router-dom";
 // import { saveResponse } from './api';
 
 import './Questionaire.css';
-import { WeddingWeekendText } from "../WeddingWeekend";
+import Attending from './Attending'
+import ResponseDetails from "./ResponseDetails";
+import StayingOnsite from "./StayingOnsite";
 
-interface partyMemberType {
+export interface partyMemberType {
     name: string,
+    isAdult: boolean,
     attending: boolean,
     eventsAttending: {
         "Thursday evening dinner and event": boolean,
@@ -19,17 +21,23 @@ interface partyMemberType {
     foodPreferences: string,
     additionalComments: string,
     stayingOnsite: boolean,
-  }
+}
 
-  interface guestInfoType {
-   name: string,
-   partyMembers: partyMemberType[]
-  }
-  
-  interface guestInfoResponse {
+interface partyMemberServerResponseType {
     name: string,
-    partyMembers: string[]
-   }
+    isAdult: boolean,
+}
+  
+interface guestInfoResponse {
+    name: string,
+    partyMembers: partyMemberServerResponseType[]
+}
+
+export interface guestInfoType {
+    name: string,
+    partyMembers: partyMemberType[]
+ }
+   
 
 const defaultRSVP = {
     attending: true,
@@ -44,104 +52,12 @@ const defaultRSVP = {
     additionalComments: "",
 }
 
-function Attending(
-    { guestRSVP, setRSVP }:
-    { guestRSVP: guestInfoType,
-        setRSVP: (partyMemberIndex: number, field: string, value: any) => void }) {
-    const attendingFieldName = "attending";
-    const attendingValue = {
-        "true": "attending",
-        "false": "not"
-    }
-    return (
-        <div className="guestAttendingContainer">
-        <label htmlFor="guestsAttending">
-            Attendance
-        </label>
-            {guestRSVP.partyMembers.map(({name, attending } : partyMemberType, index: number) => (
-                <div className="questionaire__guestAttendanace" key={name}>
-                    <p>{name}</p>
-                    <div className="questionaire__guestResponse">
-                        <select
-                            className="select"
-                            value={attendingValue[attending?.toString() || "true"]}
-                            name="guestsAttending" 
-                            onChange={(e) => {
-                                const attending: boolean = e.target.value == attendingValue["true"] || false;
-                                setRSVP(index, attendingFieldName, attending);
-                            }}
-                        >
-                            <option value={attendingValue["true"]}>Attending</option>
-                            <option value={attendingValue["false"]}>Sadly Can Not</option>
-                        </select>
-                    </div>
-                </div>
-            ))}
-            {guestRSVP.partyMembers.length > 2 && <p className="asside asside--noTop">Kids are welcome at all weekend events except the ceremony and reception, during which we'll provide childcare (local babysitters).</p>}
-    </div>
-    )
-}
-
-function GuestResponse({ partyMembers, setRSVP } : { partyMembers: partyMemberType[], setRSVP: (partyMemberIndex: number, field: string, value: any) => void  }) {
-    const attending: partyMemberType[] = partyMembers.filter(member => member.attending);
-    const foodAllergiesKeyName = "foodPreferences";
-    return (
-        <div>
-            <Accordion>
-                <AccordionItem className="questionaire__accordion" header="Questions about Thursday?">
-                    <WeddingWeekendText />
-                </ AccordionItem>
-            </Accordion>
-            { attending.map(({ name, eventsAttending, foodPreferences } : partyMemberType, index: number) => (
-                <div className="guestAttendingContainer" key={name}>
-                    <p>Select the events {name} will be attending</p>
-                        {
-                            Object.keys(eventsAttending).map((eventName: string) => {
-                                const onClick = (e: { target: { value: any; }; }) => {
-                                    e.preventDefault();
-                                    const updatedEvents = {
-                                        ...eventsAttending,
-                                    }
-                                    updatedEvents[eventName] = !updatedEvents[eventName];
-                                    setRSVP(index, "eventsAttending", updatedEvents)
-                                };
-                                return (
-                                    <div key={`${index}${eventName}`}>
-                                        <input 
-                                            type="checkbox" 
-                                            id={`guest${index}eventAttendance`} 
-                                            name={eventName} 
-                                            checked={eventsAttending[eventName]}
-                                            onClick={onClick}
-                                        />
-                                        <label onClick={onClick} htmlFor={`guest${index}eventAttendance`}>{eventName}</label>
-                                    </div>
-                                )
-                            })
-                        }
-                    <div>
-                        <label className="questionaire__foodlabel" htmlFor={`guest${index}FoodAllergies`}>Any dietary restrictions or preferences?</label><br></br>
-                        <textarea 
-                            id={`guest${index}FoodAllergies`} 
-                            name={foodAllergiesKeyName} 
-                            value={foodPreferences}
-                            onChange={(e) => {
-                                setRSVP(index, foodAllergiesKeyName, e.target.value)
-                            }}
-                        />
-                    </div>
-                </div>
-            ))}
-        </div>
-    );
-}
-
 export default function Questionaire({ guestInfo }: { guestInfo: guestInfoResponse }) {
     const [questionIndex, setQuestionIndex] = useState(0);
     const [guestRSVP, setGuestRSVP] = useState(
         { ...guestInfo, 
-            partyMembers: guestInfo.partyMembers.map((name: string) => (
-                { name, ...defaultRSVP }
+            partyMembers: guestInfo.partyMembers.map(({name, isAdult}: partyMemberServerResponseType) : partyMemberType =>  (
+                { name, isAdult, ...defaultRSVP }
             ))
         }
     );
@@ -169,7 +85,9 @@ export default function Questionaire({ guestInfo }: { guestInfo: guestInfoRespon
             case 0:
                 return <Attending guestRSVP={guestRSVP} setRSVP={setRSVP} />
             case 1:
-                return <GuestResponse partyMembers={guestRSVP.partyMembers} setRSVP={setRSVP} />
+                return <ResponseDetails partyMembers={guestRSVP.partyMembers} setRSVP={setRSVP} />
+            case 2:
+                return <StayingOnsite partyMembers={guestRSVP.partyMembers} setRSVP={setRSVP}  />
             default:
                 <Attending guestRSVP={guestRSVP} setRSVP={setRSVP} />;
         }

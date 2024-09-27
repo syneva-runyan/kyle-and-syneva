@@ -1,0 +1,15 @@
+.stayingOnsite__radio {
+    display: flex;
+    flex-direction: column;
+}
+
+.questionaire__accordion {
+    margin-bottom: 25px;
+}
+
+.questionaire__accordion button {
+    color: var(--primary--light);
+}
+
+
+

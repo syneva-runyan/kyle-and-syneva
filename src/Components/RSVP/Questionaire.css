@@ -1,32 +1,5 @@
 .questionaire {
-    text-align: center;
-}
-
-.questionaire__accordion button {
-    background-color: transparent;
-    border: 0;
-    font-style: italic;
-    padding: 0;
-}
-
-.questionaire__accordion button::after {
-    content: '';
-    border: solid var(--primary--light);
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-    transform: rotate(-45deg);
-    margin-left: 5px;
-    transition: 0.25s;
-}
-
-.questionaire__accordion.szh-accordion__item--expanded button::after {
-    transform: rotate(-135deg);
-}
-
-.szh-accordion__item-content {
-    font-size: 16px;
-    border-bottom:  1px solid var(--primary--light);
+    text-align: left;
 }
 
 .guestAttendingContainer {

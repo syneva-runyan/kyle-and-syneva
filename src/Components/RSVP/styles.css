@@ -149,7 +149,7 @@ body {
   }
 
 
-input[type="checkbox"] + label {
+input[type="checkbox"] + label, input[type="radio"] + label {
     display: block;
     position: relative;
     padding-left: 25px;
@@ -159,18 +159,18 @@ input[type="checkbox"] + label {
 }
   
   /* checkbox-rect */
- input[type="checkbox"] {
+ input[type="checkbox"], input[type="radio"] {
     display: none;
   }
 
-  input[type="checkbox"]:hover, input[type="checkbox"] + label:hover {
+  input[type="checkbox"]:hover, input[type="checkbox"] + label:hover, input[type="radio"]:hover, input[type="radio"] + label:hover {
     color: var(--primary--light);
   }
-  input[type="checkbox"]:hover + label:before, input[type="checkbox"] + label:hover:before {
+  input[type="checkbox"]:hover + label:before, input[type="checkbox"] + label:hover:before, input[type="radio"]:hover + label:before, input[type="radio"] + label:hover:before {
     box-shadow: inset 0px 0px 0px 2px #f7f2f2;
   }
 
-  input[type="checkbox"] + label:before {
+  input[type="checkbox"] + label:before, input[type="radio"] + label:before {
     content: " ";
     display: block;
     width: 1em;
@@ -180,18 +180,58 @@ input[type="checkbox"] + label {
     position: absolute;
     left: 0;
     top: 3px;
-    -webkit-transition: all 0.15s, background 0.15s ease-in-out;
     transition: all 0.15s, background 0.15s ease-in-out;
     background: #f3f3f3;
   }
+  input[type="radio"] + label:before {
+    transition: all 0.3s, background 0.3s ease-in-out;
+    border-radius: 100%;
+  }
 
-input[type="checkbox"]:checked + label:before {
+input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + label:before {
     width: 0.9em;
     height: 0.9em;
-    border-radius: 0.2em;
     border: 2px solid #fff;
     -webkit-transform: rotate(90deg);
     transform: rotate(90deg);
     background-color: var(--primary--light);
     box-shadow: 0 0 0 1px #000;
+}
+
+input[type="radio"]:checked + label:before {
+    transform: rotateY(180deg)
+}
+
+.questionaire__accordion button, .faq__accordion button {
+    background-color: transparent;
+    border: 0;
+    font-style: italic;
+    padding: 0;
+}
+
+.faq__accordion button {
+    font-family: 'josefinsans';
+    font-style: normal;
+    font-size: 20px;
+    color: var(--primary--light); 
+}
+
+.questionaire__accordion button::after, .faq__accordion button::after {
+    content: '';
+    border: solid var(--primary--light);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(-45deg);
+    margin-left: 5px;
+    transition: 0.25s;
+}
+
+.questionaire__accordion.szh-accordion__item--expanded button::after, .faq__accordion.szh-accordion__item--expanded button::after {
+    transform: rotate(-135deg);
+}
+
+.szh-accordion__item-content {
+    font-size: 16px;
+    border-bottom:  1px solid var(--primary--light);
 }

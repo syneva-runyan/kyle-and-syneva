@@ -62,12 +62,16 @@ function cleanContact(contact = "") {
 
 // print names of other people in party
 function findPartyMembers(guests, partyName) {
-  console.log(guests)
   const partyMembers = guests.filter(guestData => (
     guestData[0] == partyName
   ))
 
-  return partyMembers.map(guest => `${guest[1]} ${guest[2]}`)
+  return partyMembers.map(guest => {
+    return {
+      name: `${guest[1]} ${guest[2]}`,
+      isAdult: guest[3] == 1
+    }
+  })
 }
 
 /**
@@ -99,7 +103,7 @@ async function getGuests(addressee, resolve, reject) {
   // get data
   client.spreadsheets.values.get({
     spreadsheetId: process.env.WEDDING_GUEST_SPREADSHEET_ID,
-    range: "'Guests'!A1:C119",
+    range: "'Guests'!A2:D146",
   }, (err, res) => {
     if (err) return `The API returned an error: ${err}`;
     const rows = res.data.values;

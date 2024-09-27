@@ -11,13 +11,14 @@ export default function Lookup({ setGuestInfo }: { setGuestInfo : React.Dispatch
 
     const onSubmit = (e) => {
         e.preventDefault();
+        e.stopPropagation();
         lookupRSVP(addressee);
     }
 
     const lookupRSVP = async (addressee : string) => {
         const invite : LookupResponse = await lookup(addressee);
         if (invite?.guestData?.match) {
-            setGuestInfo(invite.guestData.match);
+           setGuestInfo(invite.guestData.match);
         } else if(invite?.guestData?.suggestion) {
             setSuggestion(invite.guestData.suggestion);
         }
@@ -25,6 +26,10 @@ export default function Lookup({ setGuestInfo }: { setGuestInfo : React.Dispatch
 
     const onAddresseeChange = (value : string) => {
         setAddressee(value)
+
+        if (value == "") {
+            setSuggestion({ name: "", partyMembers: ""})
+        }
     }
 
 
@@ -42,8 +47,11 @@ export default function Lookup({ setGuestInfo }: { setGuestInfo : React.Dispatch
                         {suggestion?.name ?
                             <span>Did you mean{" "} 
                             <button 
+                                type="button"
                                 className="rsvp-lookup__suggestion asside" 
-                                onClick={ () => setGuestInfo(suggestion) }
+                                onClick={ () => {
+                                    setGuestInfo(suggestion) 
+                                }}
                             >
                                 {suggestion.name}
                             </button>?</span> : 'Use the name on your invitation\'s envelope, ex "Mr. Tony Soprano"'}
