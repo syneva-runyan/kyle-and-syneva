@@ -25,8 +25,6 @@ export const handler =  async (event) => {
   }
   // Load client secrets from a local file.
   const guestLookup = await getGuests(guest);
-  console.log(guestLookup)
-
   return guestLookup
 }
 
@@ -66,9 +64,20 @@ function findPartyMembers(guests, partyName) {
   ))
 
   return partyMembers.map(guest => {
+    console.log(guest);
+    console.log(guest[4].toLowerCase() == "false" ? false: true);
     return {
       name: `${guest[1]} ${guest[2]}`,
-      isAdult: guest[3] == 1
+      isAdult: guest[3] == 1,
+      attending: (guest[4]?.toLowerCase() == "false" ? false: true),
+      eventsAttending: {
+        "Thursday evening dinner and event": (guest[5] && (guest[5].toLowerCase() == "false" ? false: true)) ||  false,
+        "Friday afternoon lunch and activity": (guest[6] && (guest[6].toLowerCase() == "false" ? false: true)) ||  false,
+        "Friday evening and activity dinner": (guest[7] && (guest[7].toLowerCase() == "false" ? false: true)) ||  false,
+        "Saturday wedding and reception": (guest[8] && (guest[8].toLowerCase() == "false" ? false: true)) ||  false
+      },
+      foodPreferences: guest[9] || "",
+      stayingOnsite: guest[10] || "no",
     }
   })
 }
@@ -102,12 +111,13 @@ async function getGuests(addressee, resolve, reject) {
   // get data
   const spreadsheetDataResponse = await client.spreadsheets.values.get({
     spreadsheetId: process.env.WEDDING_GUEST_SPREADSHEET_ID, 
-    range: "'Guests'!A2:D146",
+    range: "'Guests'!A2:K146",
   });
 
   if(spreadsheetDataResponse.status !== 200) {
     return returnError(`The API returned an error: ${err}`);
   }
+  console.log("Successfully fetched guest data");
 
 
   const rows = spreadsheetDataResponse.data.values;

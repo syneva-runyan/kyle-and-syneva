@@ -1,6 +1,9 @@
 import express from 'express';
+import dotenv from 'dotenv';
 const app = express();
 const PORT = 3000;
+
+dotenv.config()
 
 import { handler as lookup } from "./lookup/index.mjs";
 import { handler as saveResponse } from "./saveResponse/index.mjs";
@@ -15,7 +18,6 @@ app.use(function(req, res, next) {
 });
 
 app.get('/lookup-invite', async (req, res) => {
-    console.log(req);
     const resp = await lookup({
         queryStringParameters: req.query
     });

@@ -6,6 +6,7 @@ import type { LookupResponse } from "../../api/lookup";
 import './styles.css';
 
 export default function Lookup({ setGuestInfo }: { setGuestInfo: React.Dispatch<React.SetStateAction<any>> }) {
+    const [ isError, setIsError] = useState<boolean>(false);
     const [isLookingUp, setIsLookingUp] = useState<boolean>(false);
     const [addressee, setAddressee] = useState("");
     const [suggestion, setSuggestion] = useState({ name: "", partyMembers: "" });
@@ -16,15 +17,25 @@ export default function Lookup({ setGuestInfo }: { setGuestInfo: React.Dispatch<
         lookupRSVP(addressee);
     }
 
+    const handleError = () => {
+        setIsError(true);
+        setIsLookingUp(false);
+    }
+
     const lookupRSVP = async (addressee: string) => {
         setIsLookingUp(true);
-        const invite: LookupResponse = await lookup(addressee);
-        console.log(invite);
-        setIsLookingUp(false);
-        if (invite?.guestData?.match) {
-            setGuestInfo(invite.guestData.match);
-        } else if (invite?.guestData?.suggestion) {
-            setSuggestion(invite.guestData.suggestion);
+        setIsError(false);
+        try {
+            const invite: LookupResponse = await lookup(addressee);
+            setIsLookingUp(false);
+            if (invite?.guestData?.match) {
+                setGuestInfo(invite.guestData.match);
+            } else if (invite?.guestData?.suggestion) {
+                setSuggestion(invite.guestData.suggestion);
+            }
+        } catch(e) {
+            handleError();
+            return;
         }
     }
 
@@ -48,6 +59,7 @@ export default function Lookup({ setGuestInfo }: { setGuestInfo: React.Dispatch<
                         <label
                             htmlFor="first-name">Invitation Addressee</label>
                         <span className="rsvp-lookup__helper">
+                            {isError && <p>Uh oh! Something went wrong - please try again.</p>}
                             {suggestion?.name ?
                                 <span>Did you mean{" "}
                                     <button
@@ -56,6 +68,7 @@ export default function Lookup({ setGuestInfo }: { setGuestInfo: React.Dispatch<
                                         onClick={() => {
                                             setGuestInfo(suggestion)
                                         }}
+                                        disabled={isLookingUp}
                                     >
                                         {suggestion.name}
                                     </button>?</span> : 'Use the name on your invitation\'s envelope, ex "Mr. Tony Soprano"'}

@@ -1,9 +1,10 @@
+import { guestInfoType } from '../Components/RSVP/Questionaire';
 import constants from '../constants';
 
 interface LookupResponse {
     guestData?: {
         match?: string
-        suggestion?: string
+        suggestion?: guestInfoType, 
     }
 }
 

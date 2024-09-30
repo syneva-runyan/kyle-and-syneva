@@ -39,7 +39,6 @@ export default function ResponseDetails({ partyMembers, setRSVP } : { partyMembe
                 if(!attending) {
                     return null;
                 }
-                console.log("declare for", partyMemberIndex);
                 const setFoodPreference = (preference: string) => {
                     setRSVP(partyMemberIndex, foodAllergiesKeyName, preference);
                 }

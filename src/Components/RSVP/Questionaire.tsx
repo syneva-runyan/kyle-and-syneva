@@ -24,41 +24,18 @@ export interface partyMemberType {
     stayingOnsite: "no" | "yes-sat" | "yes-thur-sat" | "yes-fri-sat" | null,
 }
 
-interface partyMemberServerResponseType {
-    name: string,
-    isAdult: boolean,
-}
-  
-export interface guestInfoResponse {
-    name: string,
-    partyMembers: partyMemberServerResponseType[]
-}
-
 export interface guestInfoType {
     name: string,
     partyMembers: partyMemberType[]
  }
 
- interface errorType {
+ interface ErrorType {
     msg: string,
-    confirmation: string | undefined,
-    declination: string | undefined,
-    confirmationFn: () => void | undefined,
-    declinationFn(): () => void | undefined,
+    confirmation?: string | undefined,
+    declination?: string | undefined,
+    confirmationFn?: () => void | undefined,
+    declinationFn?: () => void | undefined,
  }
-   
-
-const defaultRSVP = {
-    attending: true,
-    eventsAttending: {
-        "Thursday evening dinner and event": false,
-        "Friday afternoon lunch and activity": false,
-        "Friday evening dinner and activity": false,
-        "Saturday wedding and reception": false
-    },
-    stayingOnsite: null,
-    foodPreferences: "",
-}
 
 function getSubmitCTAText(isSaving: boolean, isOnFinalQuestion: boolean) : string {
     if(isSaving) {
@@ -67,23 +44,17 @@ function getSubmitCTAText(isSaving: boolean, isOnFinalQuestion: boolean) : strin
     return isOnFinalQuestion ? "Submit" : "Next";
 }
 
-export default function Questionaire({ guestInfo, onConfirmation }: { guestInfo: guestInfoResponse, onConfirmation: (guestRSVP: guestInfoType) => void }) {
+export default function Questionaire({ guestInfo, onConfirmation }: { guestInfo: guestInfoType, onConfirmation: (guestRSVP: guestInfoType) => void }) {
     const [isSaving, setIsSaving] = useState(false);
-    const [errorMsg, setErrorMsg] = useState<errorType | null>(null);
+    const [errorMsg, setErrorMsg] = useState<ErrorType | null>(null);
     const [finalConfirmation, setFinalConfirmation] = useState(true)
     const [questionIndex, setQuestionIndex] = useState(0);
-    const [guestRSVP, setGuestRSVP] = useState(
-        { ...guestInfo, 
-            partyMembers: guestInfo.partyMembers.map(({name, isAdult}: partyMemberServerResponseType) : partyMemberType =>  (
-                { name, isAdult, ...defaultRSVP }
-            ))
-        }
-    );
+    const [guestRSVP, setGuestRSVP] = useState({ ...guestInfo });
 
     const formEl = useRef(null);
 
-    function validateResponseDetails(partyMembers: partyMemberType): errorType[] {
-        const errors = [];
+    function validateResponseDetails(partyMembers: partyMemberType): ErrorType[] {
+        const errors: ErrorType[] = [];
         partyMembers.forEach((partyMember: partyMemberType, partyMemberIndex: number) => {
             if(partyMember.attending) {
                 for (let event of Object.keys(partyMember.eventsAttending)) {
@@ -143,7 +114,6 @@ export default function Questionaire({ guestInfo, onConfirmation }: { guestInfo:
             } else {
                 isSuccess = true;
             }
-            console.log(response);
         } catch(e) {
             setErrorMsg({ msg: "There was a problem saving your RSVP - please try to submit again."});
         }
