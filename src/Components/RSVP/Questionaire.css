@@ -100,6 +100,15 @@
     text-align: left;
 }
 
+.error__confirmation {
+    float: right;
+}
+
+.error__declination {
+    background-color: gray;
+    float: left;
+}
+
 @media (max-width:450px)  {
     .guestAttendingContainer {
         font-size: 18px;

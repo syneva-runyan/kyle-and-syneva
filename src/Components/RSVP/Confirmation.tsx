@@ -15,9 +15,10 @@ export default function({ guestResponses } : {guestResponses: guestInfoType}) {
 
     return (
         <div className="contentContainer">
-            <p>Thank you for your RSVP! We can't wait to see you at the wedding!</p>
-            <div className="confirmation__details">
-                <p>
+            <p className="confirmation__details">Thank you for your RSVP{attending.length > 0 && " - we can't wait to see you at the wedding!"}</p>
+            <div>
+            {attending.length > 0 &&
+                (<p className="confirmation__yes">
                     {attending.map((name, index) => {
                         let stringEnd = "";
                         if (attending.length > 2 && index < attending.length) {
@@ -28,7 +29,7 @@ export default function({ guestResponses } : {guestResponses: guestInfoType}) {
                         }
                         return `${name} ${stringEnd}`
                     })} will be there!
-                </p>
+                </p>)}
                 <p>
                     {declined.map((name, index) => {
                             let stringEnd = "";
@@ -39,9 +40,10 @@ export default function({ guestResponses } : {guestResponses: guestInfoType}) {
                                 stringEnd = "and "
                             }
                             return `${name} ${stringEnd}`
-                        })} sadly will not be attending.
+                        })} { declined.length > 0 && "sadly will not be attending." }
                 </p>
-            </div>
+            </div>  
+            <p>Questions? Don't hesitate to reachout! You can email us at kyleandsyneva@gmail.com</p>
             <span className="backgroundFlower3" />
         </div>
     )

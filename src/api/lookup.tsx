@@ -15,7 +15,7 @@ export  const lookup = (addressee: string): Promise<LookupResponse> => {
         xhr.addEventListener("readystatechange", function() {
         if(this.readyState === 4) {
             try {
-                resolve(JSON.parse(this.responseText).body);
+                resolve(JSON.parse(this.responseText));
             } catch(e) {
                 reject(e)
             }

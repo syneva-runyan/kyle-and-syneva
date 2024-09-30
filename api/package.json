@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "start": "nodemon --env-file=.env ./index.js "
+        "start": "nodemon --env-file=.env ./index.mjs "
     },
     "devDependencies": {
         "express": "^4.19.2"

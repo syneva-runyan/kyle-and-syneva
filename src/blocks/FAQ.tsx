@@ -41,7 +41,7 @@ questions: [{
     questions: [
     {
     question: "How do I get to Hawkesdene?",
-    answer: "If coming from out of town, we recommend flying into Atlanta.  We're considering providing transportation from Atlanta to Hawkesdene Thursday & Friday evenings then back to Atlanta Sunday. Come back here for more details soon."
+    answer: "If coming from out of town, we recommend flying into Atlanta then driving.  The drive is about 2 and a half hours with no traffic."
 }, {
     question: "Are kids invited?",
     answer: "Kids are welcome at all weekend events except the ceremony and reception, during which we'll provide childcare (local babysitters).  Please make sure to RSVP if you're bringing kids so we can accomodate."

@@ -1,3 +1,7 @@
 .confirmation__details {
-    color: var(--primary--dark);
+    color: var(--primary--light);
+}
+
+.confirmation__yes {
+    color: var(--secondary--light);
 }

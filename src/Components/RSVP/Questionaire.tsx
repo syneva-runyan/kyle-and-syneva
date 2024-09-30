@@ -1,12 +1,14 @@
 import { useState, useRef } from "react";
+import Modal from 'react-modal';
 
-// import { useHistory } from "react-router-dom";
-// import { saveResponse } from './api';
+import saveResponse from "../../api/save-response";
 
 import './Questionaire.css';
 import Attending from './Attending'
 import ResponseDetails from "./ResponseDetails";
 import StayingOnsite from "./StayingOnsite";
+
+Modal.setAppElement('#root');
 
 export interface partyMemberType {
     name: string,
@@ -15,11 +17,10 @@ export interface partyMemberType {
     eventsAttending: {
         "Thursday evening dinner and event": boolean,
         "Friday afternoon lunch and activity": boolean,
-        "Friday evening rehersal dinner": boolean,
+        "Friday evening and activity dinner": boolean,
         "Saturday wedding and reception": boolean
     },
     foodPreferences: string,
-    additionalComments: string,
     stayingOnsite: "no" | "yes-sat" | "yes-thur-sat" | "yes-fri-sat" | null,
 }
 
@@ -37,6 +38,14 @@ export interface guestInfoType {
     name: string,
     partyMembers: partyMemberType[]
  }
+
+ interface errorType {
+    msg: string,
+    confirmation: string | undefined,
+    declination: string | undefined,
+    confirmationFn: () => void | undefined,
+    declinationFn(): () => void | undefined,
+ }
    
 
 const defaultRSVP = {
@@ -44,15 +53,23 @@ const defaultRSVP = {
     eventsAttending: {
         "Thursday evening dinner and event": false,
         "Friday afternoon lunch and activity": false,
-        "Friday evening rehersal dinner": false,
+        "Friday evening dinner and activity": false,
         "Saturday wedding and reception": false
     },
     stayingOnsite: null,
     foodPreferences: "",
-    additionalComments: "",
+}
+
+function getSubmitCTAText(isSaving: boolean, isOnFinalQuestion: boolean) : string {
+    if(isSaving) {
+        return "Saving...";
+    }
+    return isOnFinalQuestion ? "Submit" : "Next";
 }
 
 export default function Questionaire({ guestInfo, onConfirmation }: { guestInfo: guestInfoResponse, onConfirmation: (guestRSVP: guestInfoType) => void }) {
+    const [isSaving, setIsSaving] = useState(false);
+    const [errorMsg, setErrorMsg] = useState<errorType | null>(null);
     const [finalConfirmation, setFinalConfirmation] = useState(true)
     const [questionIndex, setQuestionIndex] = useState(0);
     const [guestRSVP, setGuestRSVP] = useState(
@@ -65,13 +82,45 @@ export default function Questionaire({ guestInfo, onConfirmation }: { guestInfo:
 
     const formEl = useRef(null);
 
+    function validateResponseDetails(partyMembers: partyMemberType): errorType[] {
+        const errors = [];
+        partyMembers.forEach((partyMember: partyMemberType, partyMemberIndex: number) => {
+            if(partyMember.attending) {
+                for (let event of Object.keys(partyMember.eventsAttending)) {
+                    if (partyMember.eventsAttending[event]) {
+                        return true
+                    }
+                }
+                errors.push({
+                    msg: `You specified that ${partyMember.name} was attending, but didn't select any events. Would you like to change their RSVP to  not attending?`,
+                    confirmation: `Set RSVP to not attending`,
+                    declination: "No, I'll make a selction",
+                    confirmationFn: () => {
+                        setRSVP(partyMemberIndex, "attending", false);
+                    }
+                });
+            }
+        })
+
+        return errors;
+    }
+
     const back = async (e) => {
         e.preventDefault();
         setQuestionIndex(questionIndex - 1);
     }
     const next = async (e) => {
         e.preventDefault();
-        setQuestionIndex(questionIndex + 1);
+
+        if (questionIndex == 1) {
+            const errors = validateResponseDetails(guestRSVP.partyMembers);
+            if (errors.length > 0) {
+                setErrorMsg(errors[0]);
+                return;
+            }
+        }
+        const isSuccess = await saveResponseDetails(guestRSVP);
+        if(isSuccess) setQuestionIndex(questionIndex + 1);
     }
 
     const setRSVP = (partyMemberIndex: number, field: string, value: any) => {
@@ -80,6 +129,28 @@ export default function Questionaire({ guestInfo, onConfirmation }: { guestInfo:
         updatedResponse.partyMembers[partyMemberIndex][field] = value
         setGuestRSVP(updatedResponse);
     }
+
+    async function saveResponseDetails(guestRSVP: guestInfoType) {
+        if(isSaving) {
+            return;
+        }
+        let isSuccess = false;
+        setIsSaving(true);
+        try {
+            const response = await saveResponse(guestRSVP);
+            if(response.success !== "ok") {
+                setErrorMsg({ msg: "There was a problem saving your RSVP - please try to submit again."});
+            } else {
+                isSuccess = true;
+            }
+            console.log(response);
+        } catch(e) {
+            setErrorMsg({ msg: "There was a problem saving your RSVP - please try to submit again."});
+        }
+        setIsSaving(false);
+        return isSuccess;
+    }
+    
 
     function getQuestion(questionIndex: number){
         switch (questionIndex) {
@@ -94,12 +165,49 @@ export default function Questionaire({ guestInfo, onConfirmation }: { guestInfo:
         }
     }
 
-    function confirm() {
-        onConfirmation(guestRSVP);
+    async function confirm() {
+        const isSuccess = await saveResponseDetails({...guestRSVP, finishedRSVP: true });
+        if(isSuccess) onConfirmation(guestRSVP);
+    }
+
+    function isFinalQuestion() {
+        // final question is last in form or all guest have declined the wedding.
+        if(questionIndex == 2) {
+            return true
+        }
+        for(let guest of guestRSVP.partyMembers) {
+            if(guest.attending) return false; // still have some questions to go.
+        }
+        return true;
     }
 
     return (
         <div className="questionaire">
+            <Modal
+                isOpen={errorMsg !== null}
+                onRequestClose={() => setErrorMsg(null)}
+                contentLabel="Uh oh!"
+                style={{ content: {"height": "fit-content"}}}
+            >
+                <h2>Oh no!</h2>
+                <p>{errorMsg?.msg}</p>
+                {
+                    errorMsg?.declination && <button 
+                            className="rsvp-lookup__btn error__declination"
+                            onClick={() => setErrorMsg(null)}
+                        >{errorMsg?.declination}</button>
+                }
+                <button 
+                            className="rsvp-lookup__btn error__confirmation"
+                            onClick={() => {
+                                if(errorMsg?.confirmationFn) {
+                                    errorMsg.confirmationFn();
+                                }
+                                setErrorMsg(null)
+                            }
+                            }
+                        >{errorMsg?.confirmation || "Ok"}</button>
+            </Modal>
             <h3>{guestInfo.name}</h3>
             <form ref={formEl}>
                 {getQuestion(questionIndex)}
@@ -110,10 +218,10 @@ export default function Questionaire({ guestInfo, onConfirmation }: { guestInfo:
                     <div className="nextBtn">
                         <button 
                             className="rsvp-lookup__btn"
-                            onClick={questionIndex == 2 ? confirm : next}
-                            disabled={questionIndex == 2 && !finalConfirmation}
+                            onClick={isFinalQuestion() ? confirm : next}
+                            disabled={(questionIndex == 2 && !finalConfirmation) || isSaving}
                         >
-                            {questionIndex == 2 ? "Submit" : "Next"}
+                                {getSubmitCTAText(isSaving, isFinalQuestion())}
                         </button>
                     </div>
                 </div>
