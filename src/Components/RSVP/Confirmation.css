@@ -1,7 +1,7 @@
-.confirmation__details {
-    color: var(--primary--light);
-}
-
 .confirmation__yes {
     color: var(--secondary--light);
+}
+
+.confirmation__form {
+    float: left;
 }

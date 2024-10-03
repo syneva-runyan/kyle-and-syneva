@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { guestInfoType, partyMemberType } from "./Questionaire";
 import "./Confirmation.css";
 
 export default function({ guestResponses } : {guestResponses: guestInfoType}) {
+    const [additionalCommentsOrQuestions, setAdditionalCommentsOrQuestions] = useState<string>("");
     const attending: string[] = [];
     const declined: string[] = [];
     
@@ -13,6 +15,11 @@ export default function({ guestResponses } : {guestResponses: guestInfoType}) {
         }
     })
 
+    const submitQuestions = (e: any) => {
+        e.preventDefault();
+        setAdditionalCommentsOrQuestions(e.target.value)
+    }
+
     return (
         <div className="contentContainer">
             <p className="confirmation__details">Thank you for your RSVP{attending.length > 0 && " - we can't wait to see you at the wedding!"}</p>
@@ -21,13 +28,13 @@ export default function({ guestResponses } : {guestResponses: guestInfoType}) {
                 (<p className="confirmation__yes">
                     {attending.map((name, index) => {
                         let stringEnd = "";
-                        if (attending.length > 2 && index < attending.length) {
+                        if (attending.length > 2 && index < attending.length - 1) {
                             stringEnd = ", "
                         } 
                         if (attending.length > 1 && index == attending.length - 2) {
-                            stringEnd = "and "
+                            stringEnd = " and "
                         }
-                        return `${name} ${stringEnd}`
+                        return `${name}${stringEnd}`
                     })} will be there!
                 </p>)}
                 <p>
@@ -36,15 +43,18 @@ export default function({ guestResponses } : {guestResponses: guestInfoType}) {
                             if (declined.length > 2 && index < declined.length) {
                                 stringEnd = ", "
                             } 
-                            if (declined.length > 1 && index == declined.length - 1) {
+                            if (declined.length > 1 && index == declined.length - 2) {
                                 stringEnd = "and "
                             }
                             return `${name} ${stringEnd}`
                         })} { declined.length > 0 && "sadly will not be attending." }
                 </p>
             </div>  
-            <p>Questions? Don't hesitate to reachout! You can email us at kyleandsyneva@gmail.com</p>
-            <span className="backgroundFlower3" />
+            <form>
+                <label htmlFor="additional-questions">Comments or questions? Don't hesitate to reach out!</label><br/>
+                <textarea id="additional-questions" onChange={submitQuestions} value={additionalCommentsOrQuestions} /><br/>
+                <button type="submit" className="confirmation__form rsvp-lookup__btn">Submit</button>
+            </form>
         </div>
     )
 }

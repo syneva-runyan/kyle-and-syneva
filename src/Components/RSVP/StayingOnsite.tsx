@@ -24,8 +24,10 @@ export default function StayingOnsite({ partyMembers, setRSVP, setFinalConfirmat
     })
 
     const onChange = function(e: any) {
-        if(e.target.value !=="no") {
+        if(e.target.value !== "no") {
             setFinalConfirmation(false);
+        } else {
+            setFinalConfirmation(true);
         }
         //set response for all guests attending
         partyMembers.forEach(({ attending }: partyMemberType, index: number) => {
@@ -37,7 +39,7 @@ export default function StayingOnsite({ partyMembers, setRSVP, setFinalConfirmat
 
     return (
         <div>
-            <p>Are you planning on staying at Hawkesdene during the wedding weekend?</p>
+            <p>Will you be staying at Hawkesdene?</p>
             <Accordion>
                 <AccordionItem className="questionaire__accordion" header="Questions about lodging?">
                     {lodgingFaQs.map((q: QAndAInterface) => <Question faq={q} key={q.question} />)}

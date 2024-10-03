@@ -46,6 +46,7 @@ function returnError(error) {
     body: JSON.stringify({ error }),
     headers: {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     },
   };
 }
@@ -64,8 +65,6 @@ function findPartyMembers(guests, partyName) {
   ))
 
   return partyMembers.map(guest => {
-    console.log(guest);
-    console.log(guest[4].toLowerCase() == "false" ? false: true);
     return {
       name: `${guest[1]} ${guest[2]}`,
       isAdult: guest[3] == 1,
@@ -77,7 +76,7 @@ function findPartyMembers(guests, partyName) {
         "Saturday wedding and reception": (guest[8] && (guest[8].toLowerCase() == "false" ? false: true)) ||  false
       },
       foodPreferences: guest[9] || "",
-      stayingOnsite: guest[10] || "no",
+      stayingOnsite: guest[10] || "no"
     }
   })
 }

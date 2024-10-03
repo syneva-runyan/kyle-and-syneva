@@ -45,7 +45,7 @@ export default function ResponseDetails({ partyMembers, setRSVP } : { partyMembe
                 return (
                     <div className="guestAttendingContainer" key={name}>
                         <p>Select the events {name} will be attending</p>
-                            <button className="rsvp-lookup__btn responseDetails__attendingAll" onClick={(e) => {
+                            <button className="rsvp-lookup__btn responseDetails__attendingAll primaryButton" onClick={(e) => {
                                 e.preventDefault();
                                 attendingAllEvents(eventsAttending, partyMemberIndex)
                             }}
@@ -79,9 +79,9 @@ export default function ResponseDetails({ partyMembers, setRSVP } : { partyMembe
                                     )
                                 })
                             }
-                        <div>
+                        <div className="questionaire__foodarea">
                             <label className="questionaire__foodlabel" htmlFor={`guest${partyMemberIndex}FoodAllergies`}>Any dietary restrictions or preferences?</label><br></br>
-                            <textarea 
+                            <textarea
                                 id={`guest${partyMemberIndex}FoodAllergies`} 
                                 name={foodAllergiesKeyName} 
                                 value={foodPreferences}

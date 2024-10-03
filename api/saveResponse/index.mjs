@@ -1,5 +1,7 @@
 import stringSimilarity from 'string-similarity';
 import { google } from 'googleapis';
+import aws from 'aws-sdk';
+var ses = new aws.SES({region: 'us-east-1'});
 
 const serviceAccountKeyFile = "./credentials.json";
 
@@ -17,8 +19,7 @@ export const handler =  async (event) => {
       // but we only want to save the confirmation when the user's finished the full rsvp.
       if(event.body.finishedRSVP) {
         try {
-          
-            sendConfirmationEmail(guestResponses)
+            await sendConfirmationEmail(guestResponses)
         } catch (error){
             // silent failure :( 
             // if this was legit code i'd log the error somewhere.
@@ -100,7 +101,7 @@ async function saveResponseInSpreadsheet(partyMemberResponses) {
           partyMember.attending,
           partyMember.eventsAttending["Thursday evening dinner and event"] || rows[mostSimlular.bestMatchIndex][5],
           partyMember.eventsAttending["Friday afternoon lunch and activity"] || rows[mostSimlular.bestMatchIndex][6],
-          partyMember.eventsAttending["Friday evening dinner and activity"] || rows[mostSimlular.bestMatchIndex][7],
+          partyMember.eventsAttending["Friday evening and activity dinner"] || rows[mostSimlular.bestMatchIndex][7],
           partyMember.eventsAttending["Saturday wedding and reception"] || rows[mostSimlular.bestMatchIndex][8],
           partyMember.foodPreferences || rows[mostSimlular.bestMatchIndex][9],
           partyMember.stayingOnsite || rows[mostSimlular.bestMatchIndex][10] || "no"
@@ -149,7 +150,7 @@ async function getAuthClient() {
   });
 }
 
-function sendConfirmationEmail(guestRSVP = {}) {
+async function sendConfirmationEmail(guestRSVP = {}) {
       const htmlBody = `
     <!DOCTYPE html>
     <html>
@@ -191,17 +192,11 @@ function sendConfirmationEmail(guestRSVP = {}) {
     Source: "Kyle and Synevas Site <syneva@gmail.com>"
   };
 
-  // Create the promise and SES service object
-  const sendPromise = new AWS.SES({ apiVersion: "2010-12-01" })
-    .sendEmail(params)
-    .promise();
-
-  // Handle promise's fulfilled/rejected states
-  sendPromise
-    .then(data => {
-      console.log(data.MessageId);
-    })
-    .catch(err => {
-      console.error(err, err.stack);
-    });
+  try {
+    await ses.sendEmail(params).promise();
+    console.log("MAIL SENT SUCCESSFULLY!!");      
+  } catch (e) {
+    console.log("FAILURE IN SENDING MAIL!!", e);
+  }  
+  return;
 }

@@ -4,7 +4,7 @@ const local = "http://localhost:3000";
 const prod = "https://cs1eavm5d2.execute-api.us-east-1.amazonaws.com/default";
 
 
-const useMe = local;
+const useMe = prod;
 
 export default {
     LOOKUP_ENDPOINT : `${useMe}/lookup-invite`,

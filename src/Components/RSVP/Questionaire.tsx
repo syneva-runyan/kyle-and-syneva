@@ -53,7 +53,7 @@ export default function Questionaire({ guestInfo, onConfirmation }: { guestInfo:
 
     const formEl = useRef(null);
 
-    function validateResponseDetails(partyMembers: partyMemberType): ErrorType[] {
+    function validateResponseDetails(partyMembers: partyMemberType[]): ErrorType[] {
         const errors: ErrorType[] = [];
         partyMembers.forEach((partyMember: partyMemberType, partyMemberIndex: number) => {
             if(partyMember.attending) {
@@ -68,6 +68,10 @@ export default function Questionaire({ guestInfo, onConfirmation }: { guestInfo:
                     declination: "No, I'll make a selction",
                     confirmationFn: () => {
                         setRSVP(partyMemberIndex, "attending", false);
+
+                        if(partyMembers.filter(partyMember => partyMember.attending).length == 0) {
+                            confirm();
+                        }
                     }
                 });
             }
@@ -151,6 +155,16 @@ export default function Questionaire({ guestInfo, onConfirmation }: { guestInfo:
         return true;
     }
 
+    function getButonIsDisabled() {
+        if (isSaving) {
+            return true;
+        }
+        if(questionIndex == 2 && !finalConfirmation) {
+            return true;
+        }
+        return false;
+    }   
+
     return (
         <div className="questionaire">
             <Modal
@@ -185,11 +199,11 @@ export default function Questionaire({ guestInfo, onConfirmation }: { guestInfo:
                     <div className="">
                         { questionIndex > 0 && <button className="rsvp-lookup__btn" onClick={back}>Back</button> }
                     </div>
-                    <div className="nextBtn">
+                    <div>
                         <button 
-                            className="rsvp-lookup__btn"
+                            className="rsvp-lookup__btn primaryButton"
                             onClick={isFinalQuestion() ? confirm : next}
-                            disabled={(questionIndex == 2 && !finalConfirmation) || isSaving}
+                            disabled={getButonIsDisabled()}
                         >
                                 {getSubmitCTAText(isSaving, isFinalQuestion())}
                         </button>

@@ -31,7 +31,7 @@ export default function Attending(
                     </div>
                 </div>
             ))}
-            {guestRSVP.partyMembers.filter(person => !person.isAdult).length > 0 && <p className="asside asside--noTop">Kids are welcome at all weekend events except the ceremony and reception, during which we'll provide childcare (local babysitters).</p>}
+            {guestRSVP.partyMembers.filter(person => !person.isAdult).length > 0 && <p className="asside asside--noTop">Kids are welcome to come!  We just ask that during the ceremony and reception they stay with a local babysitter, which we'll provide on-site. </p>}
         </label>
     </div>
     )
