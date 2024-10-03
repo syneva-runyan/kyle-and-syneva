@@ -1,0 +1,24 @@
+.stayingOnsite__radio {
+    display: flex;
+    flex-direction: column;
+}
+
+.questionaire__accordion {
+    margin-bottom: 25px;
+}
+
+.questionaire__accordion button {
+    color: var(--primary--light);
+}
+
+.staying-onsite__formDetails {
+    padding: 0;
+}
+
+.staying-onsite__formDetails li {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+
+

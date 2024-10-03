@@ -7,7 +7,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  --light-white: rgba(255, 255, 255, 0.87)
   --primary: #1D637D;
   --primary--light: #517F99;
   --primary--dark: #043347;

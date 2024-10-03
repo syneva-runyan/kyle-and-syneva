@@ -1,0 +1,20 @@
+.responseDetails__attendingAll {
+    margin: 0;
+    margin-bottom: 20px;
+    font-size: 14px;
+    padding: 10px;   
+}
+
+.ReactModal__Content {
+    background-color: var(--background) !important;
+}
+
+.questionaire__foodarea {
+    margin: 45px 0 45px;
+}
+
+@media (max-width:450px)  {
+    .responseDetails__attendingAll {
+        margin: 15px 0 30px;
+    }
+}

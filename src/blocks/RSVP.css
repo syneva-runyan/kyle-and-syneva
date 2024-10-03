@@ -1,0 +1,260 @@
+.asside {
+    background: none;
+    border: 0;
+    color: #348080;
+    padding: 0;
+}
+
+button.asside {
+    cursor: pointer;
+}
+
+button.asside:hover {
+    color: var(--primary--light);
+}
+
+.asside--noTop {
+    margin-top: 0;
+}
+
+.rsvp-lookup {
+    text-align: center;
+}
+
+.rsvp-lookup__form {
+    padding: 0 15px;
+}
+
+.rsvp-lookup__btn {
+    display: block;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    padding: 9px 20px;
+    background: #348080;
+    border-radius: 2px;
+    transition: 0.3s;
+    margin: auto auto 30px;
+}
+
+.rsvp-lookup__inputs {
+    padding: 24px 0 48px;
+}
+
+.rsvp-lookup__btn:hover {
+    cursor: pointer;
+    background: #1b6161;
+}
+
+.rsvp-lookup__helper {
+    display: block;
+    color: gray;
+    font-size: 12px;
+    margin-top: 12px;
+}
+
+/* floating code modified from: https://codepen.io/elujambio/pen/yjwzGP */
+.floating-label {
+    display: inline-block;
+    position:  relative; 
+    margin-bottom:  24px; 
+    margin-left: 10px;
+    margin-right:  10px;
+}
+
+.floating-label label {
+    color: var(--secondary--light);
+    position:  absolute; 
+    top: calc(50% - 7px);
+    left:  0; 
+    opacity:  0; 
+    transition:  all .3s ease;
+    pointer-events: none;
+}
+
+.floating-label input {
+    color: var(--light-white);
+    padding: 5px;
+    transition: 0.3s all;
+    background: transparent;
+    border: 0px;
+    border-bottom: 1px solid gray;
+    outline: none;
+    width: 100%;
+}
+
+.floating-label input:not(:placeholder-shown):not(.guestName) {
+    padding: 20px 9px 5px;
+    margin-top: 1px;
+}
+
+.floating-label input:not(:placeholder-shown) + label {
+    transform:  translateY(-10px); 
+    opacity:  .7; 
+    font-size: 12px;
+    margin-left: 9px;
+    top: 10px;
+}
+
+textarea {
+    min-width: 50%;
+    min-height: 100px;
+}
+
+.primaryButton{
+    background: var(--primary--light);
+}
+
+.primaryButton:disabled {
+    background-color: gray;
+    pointer-events: none;
+}
+
+.primaryButton:hover {
+    background: var(--secondary--light);
+}
+
+.rsvp-lookup__btn:disabled {
+    background-color: gray;
+    pointer-events: none;
+}
+
+.error {
+    color: #c30f0f;
+    font-size: 16px;
+    margin: 0;
+}
+
+@media (max-width:450px)  {
+    .floating-label {
+        margin: 0 0 24px;
+        width: 100%;
+    }
+    .floating-label input {
+        width: 100%;
+        font-size: 18px;
+    }
+    .rsvp-lookup__btn {
+        padding: 14px 24px;
+        font-size: 16px;
+    }
+    .backgroundFlower3 {
+        right: 15px;
+    }
+    
+    .rsvp-lookup__helper {
+        font-size: 14px;
+    }
+    textarea {
+        min-width: 100%;
+    }
+}
+
+body {
+    background-color: #f7f2f2;
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    /* minmax(300px, 1fr)*/
+    grid-gap: 30px;
+    padding: 20px;
+    justify-items: center;
+    justify-content: center;
+    align-items: start;
+  }
+  .box {
+    padding: 2em;
+  }
+  .item {
+    margin-bottom: 2em;
+  }
+
+
+input[type="checkbox"] + label, input[type="radio"] + label {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 20px;
+    font: 17px "Open Sans", Arial, sans-serif;
+    cursor: pointer;
+}
+  
+  /* checkbox-rect */
+ input[type="checkbox"], input[type="radio"] {
+    display: none;
+  }
+
+  input[type="checkbox"]:hover, input[type="checkbox"] + label:hover, input[type="radio"]:hover, input[type="radio"] + label:hover {
+    color: var(--secondary--light);
+  }
+  input[type="checkbox"]:hover + label:before, input[type="checkbox"] + label:hover:before, input[type="radio"]:hover + label:before, input[type="radio"] + label:hover:before {
+    box-shadow: inset 0px 0px 0px 2px #f7f2f2;
+  }
+
+  input[type="checkbox"] + label:before, input[type="radio"] + label:before {
+    content: " ";
+    display: block;
+    width: 1em;
+    height: 1em;
+    border: 1px solid var(--primary--light);
+    border-radius: 0.2em;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all 0.15s, background 0.15s ease-in-out;
+    background: #f3f3f3;
+  }
+  input[type="radio"] + label:before {
+    transition: all 0.3s, background 0.3s ease-in-out;
+    border-radius: 100%;
+  }
+
+input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + label:before {
+    width: 0.9em;
+    height: 0.9em;
+    border: 2px solid #fff;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    background-color: var(--secondary--light);
+    box-shadow: 0 0 0 1px #000;
+}
+
+input[type="radio"]:checked + label:before {
+    transform: rotateY(180deg)
+}
+
+.questionaire__accordion button, .faq__accordion button {
+    background-color: transparent;
+    border: 0;
+    font-weight: bold;
+    padding: 0;
+    font-size: 15px;
+}
+
+.faq__accordion button {
+    font-family: 'josefinsans';
+    font-style: normal;
+    font-size: 20px;
+    color: var(--primary--light); 
+}
+
+.questionaire__accordion button::after, .faq__accordion button::after {
+    content: '';
+    border: solid var(--primary--light);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(-45deg);
+    margin-left: 5px;
+    transition: 0.25s;
+}
+
+.questionaire__accordion.szh-accordion__item--expanded button::after, .faq__accordion.szh-accordion__item--expanded button::after {
+    transform: rotate(-135deg);
+}
+
+.szh-accordion__item-content {
+    font-size: 17px;
+    border-bottom:  1px solid var(--primary--light);
+}
