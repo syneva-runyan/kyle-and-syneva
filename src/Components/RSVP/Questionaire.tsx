@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+// @ts-ignore
 import Modal from "react-modal";
 import saveResponse from "../../api/save-response";
 import Attending from './Attending'
@@ -56,6 +57,7 @@ export default function Questionaire({ guestInfo, onConfirmation }: { guestInfo:
         partyMembers.forEach((partyMember: partyMemberType, partyMemberIndex: number) => {
             if(partyMember.attending) {
                 for (let event of Object.keys(partyMember.eventsAttending)) {
+                    // @ts-ignore
                     if (partyMember.eventsAttending[event]) {
                         return true
                     }
@@ -78,11 +80,11 @@ export default function Questionaire({ guestInfo, onConfirmation }: { guestInfo:
         return errors;
     }
 
-    const back = async (e) => {
+    const back = async (e: any) => {
         e.preventDefault();
         setQuestionIndex(questionIndex - 1);
     }
-    const next = async (e) => {
+    const next = async (e: any) => {
         e.preventDefault();
 
         if (questionIndex == 1) {
@@ -139,6 +141,7 @@ export default function Questionaire({ guestInfo, onConfirmation }: { guestInfo:
     }
 
     async function confirm() {
+        // @ts-ignore
         const isSuccess = await saveResponseDetails({...guestRSVP, finishedRSVP: true });
         if(isSuccess) onConfirmation(guestRSVP);
     }

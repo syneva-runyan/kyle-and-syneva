@@ -24,6 +24,7 @@ export default function RSVPIndex() {
         case "lookup":
             return <Lookup setGuestInfo={selectGuest} />
             case "questions":
+                // @ts-ignore
                 return <Questionaire guestInfo={guestInfo}  onConfirmation={onConfirmation}/>
         case "confirmation":
             return guestResponses && <Confirmation guestResponses={guestResponses} />

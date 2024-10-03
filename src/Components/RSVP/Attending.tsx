@@ -18,6 +18,7 @@ export default function Attending(
                     <div className="questionaire__guestResponse">
                         <select
                             className="select"
+                            // @ts-ignore
                             value={attendingValue[attending?.toString() || "true"]}
                             name="guestsAttending" 
                             onChange={(e) => {

@@ -9,7 +9,7 @@ export default function Lookup({ setGuestInfo }: { setGuestInfo: React.Dispatch<
     const [addressee, setAddressee] = useState("");
     const [suggestion, setSuggestion] = useState({ name: "", partyMembers: "" });
 
-    const onSubmit = (e) => {
+    const onSubmit = (e: any) => {
         e.preventDefault();
         e.stopPropagation();
         lookupRSVP(addressee);
@@ -29,6 +29,7 @@ export default function Lookup({ setGuestInfo }: { setGuestInfo: React.Dispatch<
             if (invite?.guestData?.match) {
                 setGuestInfo(invite.guestData.match);
             } else if (invite?.guestData?.suggestion) {
+                // @ts-ignore
                 setSuggestion(invite.guestData.suggestion);
             }
         } catch(e) {

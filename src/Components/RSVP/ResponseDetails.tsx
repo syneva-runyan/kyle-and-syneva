@@ -17,6 +17,7 @@ export default function ResponseDetails({ partyMembers, setRSVP } : { partyMembe
 
     const attendingAllEvents = (eventsAttending: any, partyMemberIndex: number) => {
         const updatedEvents = {};
+        // @ts-ignore
         Object.keys(eventsAttending).forEach((eventName: string) => updatedEvents[eventName] = true)
         setRSVP(partyMemberIndex, "eventsAttending", updatedEvents)
     };
@@ -65,6 +66,7 @@ export default function ResponseDetails({ partyMembers, setRSVP } : { partyMembe
                                                 type="checkbox" 
                                                 id={`guest${name.replace(" ", "")}${eventIndex}eventAttendance`} 
                                                 name={eventName} 
+                                                // @ts-ignore
                                                 checked={eventsAttending[eventName]}
                                                 onChange={() => attendingEvent(eventsAttending, eventName, partyMemberIndex)}
                                             />
