@@ -34,7 +34,7 @@ button.asside:hover {
     background: #348080;
     border-radius: 2px;
     transition: 0.3s;
-    margin: auto;
+    margin: auto auto 30px;
 }
 
 .rsvp-lookup__inputs {
@@ -114,6 +114,17 @@ textarea {
     background: var(--secondary--light);
 }
 
+.rsvp-lookup__btn:disabled {
+    background-color: gray;
+    pointer-events: none;
+}
+
+.error {
+    color: #c30f0f;
+    font-size: 16px;
+    margin: 0;
+}
+
 @media (max-width:450px)  {
     .floating-label {
         margin: 0 0 24px;
@@ -175,7 +186,7 @@ input[type="checkbox"] + label, input[type="radio"] + label {
   }
 
   input[type="checkbox"]:hover, input[type="checkbox"] + label:hover, input[type="radio"]:hover, input[type="radio"] + label:hover {
-    color: var(--primary--light);
+    color: var(--secondary--light);
   }
   input[type="checkbox"]:hover + label:before, input[type="checkbox"] + label:hover:before, input[type="radio"]:hover + label:before, input[type="radio"] + label:hover:before {
     box-shadow: inset 0px 0px 0px 2px #f7f2f2;
@@ -205,7 +216,7 @@ input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + lab
     border: 2px solid #fff;
     -webkit-transform: rotate(90deg);
     transform: rotate(90deg);
-    background-color: var(--primary--light);
+    background-color: var(--secondary--light);
     box-shadow: 0 0 0 1px #000;
 }
 

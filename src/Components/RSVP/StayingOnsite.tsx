@@ -5,7 +5,7 @@ import { FAQInterface, QAndAInterface, Question, qAnda } from "../../blocks/FAQ"
 
 function getIsPartyStayingOnSite(partyMembers: partyMemberType[]) : "no" | "yes-sat" | "yes-thur-sat" | "yes-fri-sat" {
     for (let partyMember of partyMembers) {
-        if (partyMember.stayingOnsite) {
+        if (partyMember.attending && partyMember.stayingOnsite) {
             return partyMember.stayingOnsite
         }
     }

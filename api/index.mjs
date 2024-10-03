@@ -7,6 +7,7 @@ dotenv.config()
 
 import { handler as lookup } from "./lookup/index.mjs";
 import { handler as saveResponse } from "./saveResponse/index.mjs";
+import { handler as askQuestion } from "./askQuestion/index.mjs";
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -26,6 +27,11 @@ app.get('/lookup-invite', async (req, res) => {
 
 app.post('/save-response', async (req, res) => {
     const resp = await saveResponse(req, res.send.bind(res));
+    res.send(resp.body);
+});
+
+app.post('/comment-or-question', async (req, res) => {
+    const resp = await askQuestion(req, res.send.bind(res));
     res.send(resp.body);
 });
 

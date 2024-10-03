@@ -41,7 +41,7 @@
 
 
 .questionaire label {
-    color: var(--secondary--light)
+    color: var(--on--background);
 }
 
 .questionaire .questionaire__foodlabel {
@@ -72,12 +72,6 @@
     margin-left: 12px;
 }
 
-.error {
-    color: #c30f0f;
-    font-size: 16px;
-    margin: 0;
-}
-
 .szh-accordion {
     text-align: left;
 }
@@ -89,6 +83,10 @@
 .error__declination {
     background-color: gray;
     float: left;
+}
+
+.ReactModal__Content h2 {
+    text-align: left;
 }
 
 @media (max-width:450px)  {
@@ -125,9 +123,5 @@
     .questionaire__guestAttendanace .select {
         margin: 0 0 24px;
         width: 100%;
-    }
-
-    .ReactModal__Content h2 {
-        text-align: left;
     }
 }

@@ -1,14 +1,16 @@
 import { useState } from "react";
 import Lookup from '../Components/RSVP/Lookup';
-import Questionaire, { guestInfoResponse, guestInfoType } from "../Components/RSVP/Questionaire";
+import Questionaire, { guestInfoType } from "../Components/RSVP/Questionaire";
 import Confirmation from "../Components/RSVP/Confirmation";
+
+import './RSVP.css';
 
 export default function RSVPIndex() {
     const [stageInProcess, setStageInProcess] = useState("lookup");
-    const [guestInfo, setGuestInfo] = useState<guestInfoResponse>();
+    const [guestInfo, setGuestInfo] = useState<guestInfoType>();
     const [guestResponses, setGuestResponses] = useState<guestInfoType>();
 
-    function selectGuest(guestInfo: guestInfoResponse) {
+    function selectGuest(guestInfo: guestInfoType) {
         setGuestInfo(guestInfo);
         setStageInProcess("questions");
     }
@@ -24,6 +26,6 @@ export default function RSVPIndex() {
             case "questions":
                 return <Questionaire guestInfo={guestInfo}  onConfirmation={onConfirmation}/>
         case "confirmation":
-            return <Confirmation guestResponses={guestResponses} />
+            return guestResponses && <Confirmation guestResponses={guestResponses} />
     }
 }

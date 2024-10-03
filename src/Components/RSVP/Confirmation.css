@@ -5,3 +5,14 @@
 .confirmation__form {
     float: left;
 }
+
+@media (max-width:450px)  {
+    .confirmation__additional-questions {
+        width: 100%;
+        min-height: 150px;
+    }
+
+    .confirmation__form {
+        width: 100%;
+    }
+}

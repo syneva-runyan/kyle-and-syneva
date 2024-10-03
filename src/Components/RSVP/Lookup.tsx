@@ -3,8 +3,6 @@ import "./Lookup.css";
 import { lookup } from "../../api/lookup";
 import type { LookupResponse } from "../../api/lookup";
 
-import './styles.css';
-
 export default function Lookup({ setGuestInfo }: { setGuestInfo: React.Dispatch<React.SetStateAction<any>> }) {
     const [ isError, setIsError] = useState<boolean>(false);
     const [isLookingUp, setIsLookingUp] = useState<boolean>(false);

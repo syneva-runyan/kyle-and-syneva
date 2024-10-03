@@ -110,7 +110,7 @@ async function getGuests(addressee, resolve, reject) {
   // get data
   const spreadsheetDataResponse = await client.spreadsheets.values.get({
     spreadsheetId: process.env.WEDDING_GUEST_SPREADSHEET_ID, 
-    range: "'Guests'!A2:K146",
+    range: "'Guests'!A2:K148",
   });
 
   if(spreadsheetDataResponse.status !== 200) {

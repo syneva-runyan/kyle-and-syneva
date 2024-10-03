@@ -7,20 +7,26 @@ const serviceAccountKeyFile = "./credentials.json";
 
 
 export const handler =  async (event) => {
-    let guestResponses = null;
-    if (event.body && event.body.name) {
-      console.log("Received rsvp for party: " + event.body.name);
-      if (!event.body.partyMembers || !Array.isArray(event.body.partyMembers) ||  event.body.partyMembers.length == null) {
+    let body = event.body;
+    if (typeof body === 'string') {
+      console.log("converting body to string");
+      body = JSON.parse(body);
+    }
+    if (body && body.name) {
+      console.log("Received rsvp for party: " + body.name);
+      if (!body.partyMembers || !Array.isArray(body.partyMembers) ||  body.partyMembers.length == null) {
         return returnError("No guest Response provided");
       }
-      guestResponses = event.body.partyMembers;
+      const guestResponses = body.partyMembers;
       const res = await saveResponseInSpreadsheet(guestResponses);
       // we update the spreadsheet as people are going through pages in a form
       // but we only want to save the confirmation when the user's finished the full rsvp.
-      if(event.body.finishedRSVP) {
+      if(body.finishedRSVP) {
+        console.log("sending confirmation email");
         try {
-            await sendConfirmationEmail(guestResponses)
+            await sendConfirmationEmail(body)
         } catch (error){
+            console.log("error sending confirmation email", error)
             // silent failure :( 
             // if this was legit code i'd log the error somewhere.
             return res
@@ -28,6 +34,7 @@ export const handler =  async (event) => {
       }
       return res;
     }
+    console.log("got here unexpectly", event);
     return returnError("Check your request body and try again.");
 };
 
@@ -63,14 +70,14 @@ async function saveResponseInSpreadsheet(partyMemberResponses) {
     // get row for partyMember
     const res = await client.spreadsheets.values.get({
       spreadsheetId: process.env.WEDDING_GUEST_SPREADSHEET_ID,
-      range: "'Guests'!A2:K146",
-    })
+      range: "'Guests'!A2:K148",
+    });
 
     if (res.status !== 200) {
-        return returnError(`The API returned an error when trying to get party rows`);
+        return returnError(`The API returned an error when trying to get party rows, ${err}`);
     }
 
-    console.log("successfully fetch rsvp data")
+    console.log("successfully fetched rsvp data")
 
     const rows = res.data.values;
     const guestNames = rows.map((row) => {
@@ -82,7 +89,7 @@ async function saveResponseInSpreadsheet(partyMemberResponses) {
 
     partyMemberResponses.forEach(partyMember => {
       const mostSimlular = stringSimilarity.findBestMatch(partyMember.name, guestNames);
-
+      console.log(`compiling response for ${rows[mostSimlular.bestMatchIndex]}`);
       let values = [[]];
 
       // clear all spreadsheet values prior set if person is no longer attending.
@@ -116,6 +123,7 @@ async function saveResponseInSpreadsheet(partyMemberResponses) {
     })
   })
 
+  console.log("updating spreadsheet with new responses");
 
   const setResp = await client.spreadsheets.values.batchUpdate({
     "spreadsheetId": process.env.WEDDING_GUEST_SPREADSHEET_ID,
@@ -150,28 +158,48 @@ async function getAuthClient() {
   });
 }
 
-async function sendConfirmationEmail(guestRSVP = {}) {
-      const htmlBody = `
+async function sendConfirmationEmail(guestRSVP = { name: ""}) {
+  const guestResponsesString = guestRSVP.partyMembers.map((member) => {
+    let details = "";
+    if(member.attending) {
+      details = `<p>Events Attending:</p>
+      <ul>
+        ${Object.keys(member.eventsAttending).map((eventName) => {
+          return `<li>${eventName}: ${member.eventsAttending[eventName]}</li>`
+        })}
+      </ul>
+      <p>Staying Onsite: ${member.stayingOnsite}</p>`
+    }
+    return `
+      <p>${member.name} is ${member.attending ? "attending" : "not attending"}</p>
+      ${details}`
+  }).join("");
+
+  const htmlBody = `
     <!DOCTYPE html>
     <html>
       <head>
       </head>
       <body>
-        <p>New Reservation from the ${guestResponse.name} party.</p>
-        <p>${JSON.stringify(guestRSVP)}.</p>
+        <p>New Reservation from the ${guestRSVP.name} party.</p>
+        ${guestResponsesString}
       </body>
     </html>
   `;
 
+  console.log("composed htmlBody");
+
   const textBody = `
-    New Reservation from ${guestResponse.name},
+    New Reservation from ${guestRSVP.name},
     ${JSON.stringify(guestRSVP)}
   `;
+
+  console.log("composed textBody");
 
   // Create sendEmail params
   const params = {
     Destination: {
-      ToAddresses: ['syneva@gmail.com', "kyle0007@gmail.com", "kyleandsyneva@gmail.com"]
+      ToAddresses: ['syneva@gmail.com', "kyleandsyneva@gmail.com"]
     },
     Message: {
       Body: {
@@ -186,19 +214,20 @@ async function sendConfirmationEmail(guestRSVP = {}) {
       },
       Subject: {
         Charset: "UTF-8",
-        Data: `Wedding RSVP for ${guestResponse.name}!`
+        Data: `🤵👰 Wedding RSVP for ${guestRSVP.name}!`
       }
     },
-    Source: "Kyle and Synevas Site <syneva@gmail.com>"
+    Source: "kyleandsyneva@gmail.com"
   };
 
+  console.log("creating email client...")
   const client = new SESClient({ region: 'us-east-1' });
 
 
   try {
-    const command = new SendEmailCommand(input);
-    const response = await client.send(command); 
-    console.log("Send mail response: ", response);  
+    const command = new SendEmailCommand(params);
+    await client.send(command); 
+    console.log("Succesfully sent confirmation email");  
   } catch (e) {
     console.log("FAILURE IN SENDING MAIL!!", e);
   }  

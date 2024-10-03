@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { guestInfoType, partyMemberType } from "./Questionaire";
 import "./Confirmation.css";
+import sendCommentOrQuestion, { commentOrQuestionReturnObject } from "../../api/comment-or-question";
 
 export default function({ guestResponses } : {guestResponses: guestInfoType}) {
+    const [isLookingUp, setIsLookingUp] = useState<boolean>(false);
+    const [isError, setIsError] = useState<boolean>(false);
+    const [isSuccess, setIsSuccess] = useState<boolean | undefined>();
     const [additionalCommentsOrQuestions, setAdditionalCommentsOrQuestions] = useState<string>("");
     const attending: string[] = [];
     const declined: string[] = [];
@@ -15,10 +19,33 @@ export default function({ guestResponses } : {guestResponses: guestInfoType}) {
         }
     })
 
-    const submitQuestions = (e: any) => {
+    const setCommentOrQuestion = (e: any) => {
         e.preventDefault();
         setAdditionalCommentsOrQuestions(e.target.value)
     }
+
+    const submit = async (e: any) => {
+        e.preventDefault();
+        setIsLookingUp(true);
+        setIsError(false);
+        setIsSuccess(false);
+        try {
+            const resp: commentOrQuestionReturnObject = await sendCommentOrQuestion({
+                from: guestResponses?.name,
+                body: additionalCommentsOrQuestions
+            });
+            setIsLookingUp(false);
+            if (resp?.success == "ok") {
+                setIsSuccess(true)
+                setAdditionalCommentsOrQuestions("");
+            }
+        } catch(e) {
+            setIsLookingUp(false);
+            setIsError(true);
+            return;
+        }
+    };
+    
 
     return (
         <div className="contentContainer">
@@ -50,10 +77,14 @@ export default function({ guestResponses } : {guestResponses: guestInfoType}) {
                         })} { declined.length > 0 && "sadly will not be attending." }
                 </p>
             </div>  
-            <form>
+            <form onSubmit={submit}>
                 <label htmlFor="additional-questions">Comments or questions? Don't hesitate to reach out!</label><br/>
-                <textarea id="additional-questions" onChange={submitQuestions} value={additionalCommentsOrQuestions} /><br/>
-                <button type="submit" className="confirmation__form rsvp-lookup__btn">Submit</button>
+                <textarea className="confirmation__additional-questions" id="additional-questions" onChange={setCommentOrQuestion} value={additionalCommentsOrQuestions} /><br/>
+                {isError && <p className="error confirmation__error">Uh oh! Something went wrong - please try again.</p>}
+                {isSuccess && <p className="confirmation__success">Thank you for your message! We'll get back to you as soon as we can.</p>}
+                <button disabled={additionalCommentsOrQuestions === "" || isLookingUp} type="submit" className="confirmation__form rsvp-lookup__btn primaryBtn">
+                    {isLookingUp ? "Sending..." : "Submit" }
+                </button>
             </form>
         </div>
     )

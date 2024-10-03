@@ -1,12 +1,10 @@
 import { useState, useRef } from "react";
-import Modal from 'react-modal';
-
+import Modal from "react-modal";
 import saveResponse from "../../api/save-response";
-
-import './Questionaire.css';
 import Attending from './Attending'
 import ResponseDetails from "./ResponseDetails";
 import StayingOnsite from "./StayingOnsite";
+import './Questionaire.css';
 
 Modal.setAppElement('#root');
 
