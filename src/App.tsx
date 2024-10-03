@@ -15,10 +15,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="our-story" element={<OurStory />} />
           <Route path="faq" element={<FAQ />} />
-          <Route path="rsvp" element={<RSVP />}>
-            <Route path="/rsvp/accept-confirmation" element={<ComingSoon />} />
-            <Route path="/rsvp/decline-confirmation" element={<ComingSoon />} />
-          </Route>
+          <Route path="rsvp" element={<RSVP />} />
           <Route path="nothing-here" element={<ComingSoon />} />
         </Route>
       </Routes>
