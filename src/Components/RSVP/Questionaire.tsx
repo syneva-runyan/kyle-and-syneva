@@ -94,6 +94,7 @@ export default function Questionaire({ guestInfo, onConfirmation }: { guestInfo:
         }
         const isSuccess = await saveResponseDetails(guestRSVP);
         if(isSuccess) setQuestionIndex(questionIndex + 1);
+        window.scrollTo(0, 0);
     }
 
     const setRSVP = (partyMemberIndex: number, field: string, value: any) => {

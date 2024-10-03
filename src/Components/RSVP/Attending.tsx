@@ -31,6 +31,9 @@ export default function Attending(
                     </div>
                 </div>
             ))}
+            {guestRSVP.partyMembers.length == 1 && 
+                <p>If you think you should have a plus one and do not, please reach out.</p>
+            }
             {guestRSVP.partyMembers.filter(person => !person.isAdult).length > 0 && <p className="asside asside--noTop">Kids are welcome to come!  We just ask that during the ceremony and reception they stay with a local babysitter, which we'll provide on-site. </p>}
         </label>
     </div>
