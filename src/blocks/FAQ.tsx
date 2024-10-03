@@ -30,7 +30,7 @@ questions: [{
 {
     exludeFromRsvp: "true",
     question: "How do I reserve a room?",
-    answer: "You will be asked about on-site accomodations and prompted to pay when RSVP'ing - Please <a href=\"/rsvp\">rsvp early</a> to reserve a room."
+    answer: "You will be asked about on-site accomodations and prompted to pay when RSVP'ing - <a href=\"/rsvp\">RSVP early</a> to reserve a room."
 },
 {
     question: "Do I have to stay on-site?",
@@ -44,7 +44,7 @@ questions: [{
     answer: "If coming from out of town, we recommend flying into Atlanta then driving.  The drive is about 2 and a half hours with no traffic."
 }, {
     question: "Are kids invited?",
-    answer: "Kids are welcome at to come! We just ask that during the ceremony and reception they stay with a local babysitter, which we'll provide on-site.  Please make sure to RSVP if you're bringing kids so we can accomodate."
+    answer: "Kids are welcome to come! We just ask that during the ceremony and reception they stay with a local babysitter, which we'll provide on-site.  Make sure to RSVP if you're bringing kids so we can accomodate."
 }, {
     question: "What if I can only come for part of the weekend?",
     answer: "We don't expect everyone to make the whole weekend and will be happy to see you at all! Just include your plans in the RSVP.",
