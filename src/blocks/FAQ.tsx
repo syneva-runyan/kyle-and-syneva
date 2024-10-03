@@ -25,7 +25,7 @@ questions: [{
 }, 
 {
     question: "What do the accomodations looks like?",
-    answer: "You can read more about and see pictures of the accomodations on <a href=\"https://www.hawkesdene.com/accommodations/\" target=\"__blank\" rel=\"noopener noreferrer\">Hawesdene's website</a>. Syneva and Kyle are in-charge of assigning parties to rooms or cabins."
+    answer: "You can read more about and see pictures of the accomodations on <a href=\"https://www.hawkesdene.com/accommodations/\" target=\"__blank\" rel=\"noopener noreferrer\">Hawesdene's website</a>. Specific rooms or cabins aren't guaranteed but can be requested."
 },
 {
     exludeFromRsvp: "true",
