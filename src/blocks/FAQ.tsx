@@ -21,7 +21,7 @@ questions: [{
 },
 {
     question: "How much do on-site accomodations cost?",
-    answer: "A room on-site costs $200/party for the weekend or $100/party if you're staying only Saturday. This is inclusive of the room + meals and snacks while on-site. We have subsidized the room costs to encourage attandance 😊"
+    answer: "A room on-site costs $250/party for the weekend or $125/party if you're staying only Saturday. This is inclusive of the room + meals and snacks while on-site. We have subsidized the room costs to encourage attandance."
 }, 
 {
     question: "What do the accomodations looks like?",

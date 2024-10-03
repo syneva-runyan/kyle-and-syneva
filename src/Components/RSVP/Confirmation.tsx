@@ -3,35 +3,25 @@ import { guestInfoType, partyMemberType } from "./Questionaire";
 import "./Confirmation.css";
 import sendCommentOrQuestion, { commentOrQuestionReturnObject } from "../../api/comment-or-question";
 
-export default function({ guestResponses } : {guestResponses: guestInfoType}) {
+const CommentBox = ({ from } : { from : string}) => {
     const [isLookingUp, setIsLookingUp] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
     const [isSuccess, setIsSuccess] = useState<boolean | undefined>();
     const [additionalCommentsOrQuestions, setAdditionalCommentsOrQuestions] = useState<string>("");
-    const attending: string[] = [];
-    const declined: string[] = [];
-    
-    guestResponses?.partyMembers.forEach((guest: partyMemberType) => {
-        if (guest.attending) {
-            attending.push(guest.name)
-        } else {
-            declined.push(guest.name)
-        }
-    })
 
     const setCommentOrQuestion = (e: any) => {
         e.preventDefault();
-        setAdditionalCommentsOrQuestions(e.target.value)
+        setAdditionalCommentsOrQuestions(e.target.value);
     }
 
-    const submit = async (e: any) => {
+    const onSubmit = async (e: any) => {
         e.preventDefault();
         setIsLookingUp(true);
         setIsError(false);
         setIsSuccess(false);
         try {
             const resp: commentOrQuestionReturnObject = await sendCommentOrQuestion({
-                from: guestResponses?.name,
+                from,
                 body: additionalCommentsOrQuestions
             });
             setIsLookingUp(false);
@@ -45,6 +35,34 @@ export default function({ guestResponses } : {guestResponses: guestInfoType}) {
             return;
         }
     };
+
+    if (isSuccess) {
+        return <p className="confirmation__success">Thank you for your message! We'll get back to you as soon as we can.</p>
+    }
+
+    return (
+        <form onSubmit={onSubmit}>
+            <label htmlFor="additional-questions">Comments or questions? Don't hesitate to reach out!</label><br/>
+            <textarea className="confirmation__additional-questions" id="additional-questions" onChange={setCommentOrQuestion} value={additionalCommentsOrQuestions} /><br/>
+            {isError && <p className="error confirmation__error">Uh oh! Something went wrong - please try again.</p>}
+            <button disabled={additionalCommentsOrQuestions === "" || isLookingUp} type="submit" className="confirmation__form rsvp-lookup__btn primaryBtn">
+                {isLookingUp ? "Sending..." : "Submit" }
+            </button>
+        </form>
+    );
+}
+
+export default function({ guestResponses } : {guestResponses: guestInfoType}) {
+    const attending: string[] = [];
+    const declined: string[] = [];
+    
+    guestResponses?.partyMembers.forEach((guest: partyMemberType) => {
+        if (guest.attending) {
+            attending.push(guest.name)
+        } else {
+            declined.push(guest.name)
+        }
+    })
     
 
     return (
@@ -77,15 +95,7 @@ export default function({ guestResponses } : {guestResponses: guestInfoType}) {
                         })} { declined.length > 0 && "sadly will not be attending." }
                 </p>
             </div>  
-            <form onSubmit={submit}>
-                <label htmlFor="additional-questions">Comments or questions? Don't hesitate to reach out!</label><br/>
-                <textarea className="confirmation__additional-questions" id="additional-questions" onChange={setCommentOrQuestion} value={additionalCommentsOrQuestions} /><br/>
-                {isError && <p className="error confirmation__error">Uh oh! Something went wrong - please try again.</p>}
-                {isSuccess && <p className="confirmation__success">Thank you for your message! We'll get back to you as soon as we can.</p>}
-                <button disabled={additionalCommentsOrQuestions === "" || isLookingUp} type="submit" className="confirmation__form rsvp-lookup__btn primaryBtn">
-                    {isLookingUp ? "Sending..." : "Submit" }
-                </button>
-            </form>
+            <CommentBox from={guestResponses?.name } />
         </div>
     )
 }

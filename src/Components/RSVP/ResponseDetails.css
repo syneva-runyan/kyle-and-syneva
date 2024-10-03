@@ -3,7 +3,7 @@
     margin-bottom: 20px;
     font-size: 14px;
     padding: 10px;   
-    margin-left: 0;
+    margin-left: 0 !important;
 }
 
 .ReactModal__Content {
