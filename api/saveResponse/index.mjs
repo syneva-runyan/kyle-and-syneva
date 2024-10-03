@@ -1,7 +1,7 @@
 import stringSimilarity from 'string-similarity';
 import { google } from 'googleapis';
-import aws from 'aws-sdk';
-var ses = new aws.SES({region: 'us-east-1'});
+import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
+
 
 const serviceAccountKeyFile = "./credentials.json";
 
@@ -192,9 +192,13 @@ async function sendConfirmationEmail(guestRSVP = {}) {
     Source: "Kyle and Synevas Site <syneva@gmail.com>"
   };
 
+  const client = new SESClient({ region: 'us-east-1' });
+
+
   try {
-    await ses.sendEmail(params).promise();
-    console.log("MAIL SENT SUCCESSFULLY!!");      
+    const command = new SendEmailCommand(input);
+    const response = await client.send(command); 
+    console.log("Send mail response: ", response);  
   } catch (e) {
     console.log("FAILURE IN SENDING MAIL!!", e);
   }  
