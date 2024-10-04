@@ -70,9 +70,9 @@ function findPartyMembers(guests, partyName) {
       isAdult: guest[3] == 1,
       attending: (guest[4]?.toLowerCase() == "false" ? false: true),
       eventsAttending: {
-        "Thursday evening dinner and event": (guest[5] && (guest[5].toLowerCase() == "false" ? false: true)) ||  false,
+        "Thursday evening dinner and welcome party": (guest[5] && (guest[5].toLowerCase() == "false" ? false: true)) ||  false,
         "Friday afternoon lunch and activity": (guest[6] && (guest[6].toLowerCase() == "false" ? false: true)) ||  false,
-        "Friday evening and activity dinner": (guest[7] && (guest[7].toLowerCase() == "false" ? false: true)) ||  false,
+        "Friday evening rehersal dinner and drinks": (guest[7] && (guest[7].toLowerCase() == "false" ? false: true)) ||  false,
         "Saturday wedding and reception": (guest[8] && (guest[8].toLowerCase() == "false" ? false: true)) ||  false
       },
       foodPreferences: guest[9] || "",

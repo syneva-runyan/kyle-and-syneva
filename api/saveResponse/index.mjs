@@ -106,9 +106,9 @@ async function saveResponseInSpreadsheet(partyMemberResponses) {
       } else {
         values = [[
           partyMember.attending,
-          partyMember.eventsAttending["Thursday evening dinner and event"] || rows[mostSimlular.bestMatchIndex][5],
+          partyMember.eventsAttending["Thursday evening dinner and welcome party"] || rows[mostSimlular.bestMatchIndex][5],
           partyMember.eventsAttending["Friday afternoon lunch and activity"] || rows[mostSimlular.bestMatchIndex][6],
-          partyMember.eventsAttending["Friday evening and activity dinner"] || rows[mostSimlular.bestMatchIndex][7],
+          partyMember.eventsAttending["Friday evening rehersal dinner and drinks"] || rows[mostSimlular.bestMatchIndex][7],
           partyMember.eventsAttending["Saturday wedding and reception"] || rows[mostSimlular.bestMatchIndex][8],
           partyMember.foodPreferences || rows[mostSimlular.bestMatchIndex][9],
           partyMember.stayingOnsite || rows[mostSimlular.bestMatchIndex][10] || "no"
@@ -199,7 +199,7 @@ async function sendConfirmationEmail(guestRSVP = { name: ""}) {
   // Create sendEmail params
   const params = {
     Destination: {
-      ToAddresses: ['syneva@gmail.com', "kyleandsyneva@gmail.com"]
+      ToAddresses: ['syneva@gmail.com', "kyleandsyneva@gmail.com",]
     },
     Message: {
       Body: {

@@ -14,9 +14,9 @@ export interface partyMemberType {
     isAdult: boolean,
     attending: boolean,
     eventsAttending: {
-        "Thursday evening dinner and event": boolean,
+        "Thursday evening dinner and welcome party": boolean,
         "Friday afternoon lunch and activity": boolean,
-        "Friday evening and activity dinner": boolean,
+        "Friday evening rehersal dinner and drinks": boolean,
         "Saturday wedding and reception": boolean
     },
     foodPreferences: string,
