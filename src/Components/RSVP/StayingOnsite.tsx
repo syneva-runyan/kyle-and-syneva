@@ -75,7 +75,10 @@ function HowToPay({ stayingOnsite, setFinalConfirmation, finalConfirmation } : {
                 <a target="blank" rel="noopener noreferrer" href="https://www.hawkesdene.com/guest-payments/">Hawkesdene's website</a>
                 {" "}with the following details:</p>
             <ul className="staying-onsite__formDetails">
-                <li>Amount to be charged? - "{ (stayingOnsite == "yes-sat") ? "$125" : "$250" }" (this is inclusive of the party's lodging + food and drinks for the weekend)</li>
+                <li>
+                    Amount to be charged? - "{ (stayingOnsite == "yes-sat") ? "$125" : "$250" }"<br/>
+                <span className="staying-onsite__asside"> This amount is inclusive of the party's lodging + food and drinks for the weekend.</span>
+                </li>
                 <li>Comments and/or Requests - Add any requests for particular rooms or cabins</li>
             </ul>
             <input 
