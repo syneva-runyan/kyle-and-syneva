@@ -25,7 +25,8 @@ export interface partyMemberType {
 
 export interface guestInfoType {
     name: string,
-    partyMembers: partyMemberType[]
+    partyMembers: partyMemberType[],
+    questionIndex: number | undefined,
  }
 
  interface ErrorType {
@@ -94,7 +95,7 @@ export default function Questionaire({ guestInfo, onConfirmation }: { guestInfo:
                 return;
             }
         }
-        const isSuccess = await saveResponseDetails(guestRSVP);
+        const isSuccess = await saveResponseDetails({ ...guestRSVP, questionIndex});
         if(isSuccess) setQuestionIndex(questionIndex + 1);
         window.scrollTo(0, 0);
     }

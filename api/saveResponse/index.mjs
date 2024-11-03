@@ -18,7 +18,8 @@ export const handler =  async (event) => {
         return returnError("No guest Response provided");
       }
       const guestResponses = body.partyMembers;
-      const res = await saveResponseInSpreadsheet(guestResponses);
+      const questionIndex = body.questionIndex;
+      const res = await saveResponseInSpreadsheet(guestResponses, questionIndex);
       // we update the spreadsheet as people are going through pages in a form
       // but we only want to save the confirmation when the user's finished the full rsvp.
       if(body.finishedRSVP) {
@@ -60,8 +61,29 @@ function returnError(errorStr) {
   };
 }
 
+function getEventAttendance(eventName, eventsAttending, currentResponse, questionIndex) {
+  if(questionIndex == 0) {
+    return currentResponse;
+  }
+  if(eventsAttending[eventName]) {
+    return eventsAttending[eventName].toString();
+  }
+  if (currentResponse) {
+    return currentResponse.toString()
+  }
+  
+  return "false";
+}
 
-async function saveResponseInSpreadsheet(partyMemberResponses) {
+function getStayingOnSite(updatedResponse, existingResponse, questionIndex) {
+  if(questionIndex < 2) {
+    return existingResponse;
+  }
+
+  return updatedResponse || "no";
+}
+
+async function saveResponseInSpreadsheet(partyMemberResponses, questionIndex) {
     // auth client
     const client = await getAuthClient();
 
@@ -90,6 +112,7 @@ async function saveResponseInSpreadsheet(partyMemberResponses) {
     partyMemberResponses.forEach(partyMember => {
       const mostSimlular = stringSimilarity.findBestMatch(partyMember.name, guestNames);
       console.log(`compiling response for ${rows[mostSimlular.bestMatchIndex]}`);
+      console.log(partyMember);
       let values = [[]];
 
       // clear all spreadsheet values prior set if person is no longer attending.
@@ -105,13 +128,13 @@ async function saveResponseInSpreadsheet(partyMemberResponses) {
         ]]
       } else {
         values = [[
-          partyMember.attending,
-          partyMember.eventsAttending["Thursday evening dinner and welcome party"] || rows[mostSimlular.bestMatchIndex][5],
-          partyMember.eventsAttending["Friday afternoon lunch and activity"] || rows[mostSimlular.bestMatchIndex][6],
-          partyMember.eventsAttending["Friday evening rehersal dinner and drinks"] || rows[mostSimlular.bestMatchIndex][7],
-          partyMember.eventsAttending["Saturday wedding and reception"] || rows[mostSimlular.bestMatchIndex][8],
+          partyMember.attending || "false",
+          getEventAttendance("Thursday evening dinner and welcome party", partyMember.eventsAttending, rows[mostSimlular.bestMatchIndex][5], questionIndex),
+          getEventAttendance("Friday afternoon lunch and activity", partyMember.eventsAttending, rows[mostSimlular.bestMatchIndex][6], questionIndex),
+          getEventAttendance("Friday evening rehersal dinner and drinks", partyMember.eventsAttending, rows[mostSimlular.bestMatchIndex][7], questionIndex),
+          getEventAttendance("Saturday wedding and reception", partyMember.eventsAttending, rows[mostSimlular.bestMatchIndex][8], questionIndex),
           partyMember.foodPreferences || rows[mostSimlular.bestMatchIndex][9],
-          partyMember.stayingOnsite || rows[mostSimlular.bestMatchIndex][10] || "no"
+          getStayingOnSite(partyMember.stayingOnsite, rows[mostSimlular.bestMatchIndex][10], questionIndex)
         ]]
     }
     const guestRow = mostSimlular.bestMatchIndex + 2;
