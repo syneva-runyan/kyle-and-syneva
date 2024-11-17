@@ -4,6 +4,7 @@ import blackandwhite from '../assets/blackandwhite.png';
 import orkney from '../assets/orkney.jpg';
 import WeddingWeekend from "../Components/WeddingWeekend";
 import saveTheDate from "../assets/saveTheDate.png";
+import WeekendItinerary from "../Components/WeekendItinerary";
 
 
 function Intro() {
@@ -18,6 +19,7 @@ function Intro() {
             <h4 className="date"><span className="theDate">June 7, 2025</span> <span className="seperator">|</span> 
             <a target="_blank" rel="noopener noreferrer" href="https://www.hawkesdene.com/">Hawkesdene Estate, North Carolina</a></h4>
             <WeddingWeekend />
+            <WeekendItinerary />
         </div>
     );
 }
