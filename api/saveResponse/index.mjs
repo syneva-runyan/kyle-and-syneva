@@ -9,7 +9,6 @@ const serviceAccountKeyFile = "./credentials.json";
 export const handler =  async (event) => {
     let body = event.body;
     if (typeof body === 'string') {
-      console.log("converting body to string");
       body = JSON.parse(body);
     }
     if (body && body.name) {
@@ -62,7 +61,7 @@ function returnError(errorStr) {
 }
 
 function getEventAttendance(eventName, eventsAttending, currentResponse, questionIndex) {
-  if(questionIndex == 0) {
+  if(parseInt(questionIndex) == 0) {
     return currentResponse;
   }
   if(eventsAttending[eventName]) {
@@ -76,7 +75,7 @@ function getEventAttendance(eventName, eventsAttending, currentResponse, questio
 }
 
 function getStayingOnSite(updatedResponse, existingResponse, questionIndex) {
-  if(questionIndex < 2) {
+  if(parseInt(questionIndex) < 2) {
     return existingResponse;
   }
 
@@ -111,8 +110,8 @@ async function saveResponseInSpreadsheet(partyMemberResponses, questionIndex) {
 
     partyMemberResponses.forEach(partyMember => {
       const mostSimlular = stringSimilarity.findBestMatch(partyMember.name, guestNames);
-      console.log(`compiling response for ${rows[mostSimlular.bestMatchIndex]}`);
-      console.log(partyMember);
+      console.log(`compiling response for ${rows[mostSimlular.bestMatchIndex]}, questionIndex: ${questionIndex}`);
+      console.log(`updated response: ${partyMember}`);
       let values = [[]];
 
       // clear all spreadsheet values prior set if person is no longer attending.
