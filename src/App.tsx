@@ -6,6 +6,7 @@ import OurStory from './blocks/OurStory';
 import ComingSoon from './blocks/ComingSoon';
 import RSVP from './blocks/RSVP';
 import { useState } from 'react';
+import Registry from './blocks/Registry';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="our-story" element={<OurStory />} />
           <Route path="faq" element={<FAQ />} />
           <Route path="rsvp" element={<RSVP />} />
+          <Route path='registry' element={<Registry/>} />
           <Route path="nothing-here" element={<ComingSoon />} />
         </Route>
       </Routes>
@@ -50,7 +52,7 @@ function Layout() {
             <Link to="/nothing-here">Wedding Party</Link>
           </li>
           <li className='navItem'>
-            <Link to="/nothing-here">Registry</Link>
+            <Link to="/registry">Registry</Link>
           </li>
           <li className='navItem'>
             <Link to="/faq">FAQ</Link>

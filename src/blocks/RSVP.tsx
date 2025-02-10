@@ -11,6 +11,20 @@ export default function RSVPIndex() {
     const [guestResponses, setGuestResponses] = useState<guestInfoType>();
 
     function selectGuest(guestInfo: guestInfoType) {
+        // hacky code to add default attending status
+        const updatedPartyMembers = guestInfo.partyMembers.map(member => {
+            return {
+                "attending": true,
+                "eventsAttending": {
+                    "Thursday evening dinner and welcome party": false,
+                    "Friday afternoon lunch and activity":  false,
+                    "Friday evening rehersal dinner and drinks": false,
+                    "Saturday wedding and reception": false
+                },
+                ...member
+            }
+        });
+        guestInfo.partyMembers = updatedPartyMembers;
         setGuestInfo(guestInfo);
         setStageInProcess("questions");
     }
