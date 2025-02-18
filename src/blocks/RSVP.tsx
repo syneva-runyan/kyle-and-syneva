@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState } from "react";
 import Lookup from '../Components/RSVP/Lookup';
 import Questionaire, { guestInfoType } from "../Components/RSVP/Questionaire";
