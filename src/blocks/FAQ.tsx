@@ -49,8 +49,8 @@ questions: [{
     question: "Are kids invited?",
     answer: "Kids are welcome to come! We just ask that during the ceremony and reception they stay with a local babysitter, which we'll provide on-site.  Make sure to RSVP if you're bringing kids so we can accomodate."
 }, {
-    question: "What if I can only come for part of the weekend?",
-    answer: "We don't expect everyone to make the whole weekend and will be happy to see you at all! Just include your plans in the RSVP.",
+    question: "What is the dress code for the wedding?",
+    answer: "Semi-formal attire",
 }, {
     question: "Will there be llamas?",
     answer: "Yes. Be excited.",
