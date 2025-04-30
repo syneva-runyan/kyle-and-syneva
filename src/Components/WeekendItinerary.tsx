@@ -16,7 +16,7 @@ function WeekendItinerary() {
                 <li><strong>8:30am - 10am</strong> Breakfast</li>
                 <li><strong>10am - Noon</strong> (Optional) Group hiking</li>
                 <li><strong>12:30pm - 2pm</strong> Lunch</li>
-                <li><strong>2:30pm - 5pm</strong> (Optional) Non-alcoholic and alcoholic group tastings (details TBA) + socializing and yard games</li>
+                <li><strong>2:30pm - 5pm</strong> (Optional) Non-alcoholic and alcoholic group tastings followed by Singo</li>
                 <li><strong>5pm - 6pm</strong> (Wedding Party Only*) Wedding Rehearsal</li>
                 <li><strong>7pm - 8pm</strong>  Rehearsal Dinner</li>
                 <p><em>*all other events are open to all guests</em></p>
