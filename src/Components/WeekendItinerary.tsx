@@ -25,10 +25,10 @@ function WeekendItinerary() {
             <ul>
                 <li><strong>8:30am</strong> Continental Breakfast</li>
                 <li><strong>10:30am</strong> Wedding Day brunch</li>
-                <li><strong>Noon - 5pm</strong> Optional hiking, yard games, socializing</li>
-                <li><strong>5pm - 5:30pm</strong> Wedding Ceremony</li>
-                <li><strong>5:30 - 7pm</strong> Cocktail Party</li>
-                <li><strong>7pm - late</strong> Dinner + Reception</li>
+                <li><strong>Noon - 3pm</strong> Optional hiking, yard games, socializing</li>
+                <li><strong>4pm - 4:30pm</strong> Wedding Ceremony</li>
+                <li><strong>4:30 - 6pm</strong> Cocktail Party</li>
+                <li><strong>6pm - late</strong> Dinner + Reception</li>
             </ul>
             <h3 >Sunday, June 8th</h3>
             <ul>
