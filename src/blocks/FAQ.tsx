@@ -17,7 +17,7 @@ category: "lodging",
 questions: [{
     exludeFromRsvp: "true",
     question: "How do I find my room?",
-    answer: "At check-in, come to the main house. We'll have room information and maps available. Alternatively, we plan on making this information available on the website before the wedding. Check back here for updates."
+    answer: "At check-in, come to the main house. We'll have room information and maps available. We also plan to make this information available on the website before the wedding. Check back here for updates."
 }, 
 {
     question: "What do the accomodations looks like?",
@@ -34,7 +34,7 @@ questions: [{
     answer: "There is a weekend itinerary on the <a href=\"/#itinerary\">home page</a> - Note that exact details and times are subject to change."
 }, {
     question: "Are kids invited?",
-    answer: "Kids are welcome to come! We just ask that during the ceremony and reception they stay with a local babysitter, which we'll provide on-site.  Make sure to RSVP if you're bringing kids so we can accomodate."
+    answer: "Kids are welcome to come! We just ask that during the ceremony and reception they stay with a local babysitter, which we'll provide on-site."
 }, {
     question: "What is the dress code for the wedding?",
     answer: "Semi-formal attire",
