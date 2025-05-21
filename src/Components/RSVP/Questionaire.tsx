@@ -21,6 +21,8 @@ export interface partyMemberType {
     },
     foodPreferences: string,
     stayingOnsite: "no" | "yes-sat" | "yes-thur-sat" | "yes-fri-sat" | null,
+    lodgingAssignment: string | null,
+    receptionTable: string | null,
 }
 
 export interface guestInfoType {

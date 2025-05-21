@@ -76,7 +76,9 @@ function findPartyMembers(guests, partyName) {
         "Saturday wedding and reception": (guest[8] && (guest[8].toLowerCase() == "false" ? false: true)) ||  false
       },
       foodPreferences: guest[9] || "",
-      stayingOnsite: guest[10] || "no"
+      stayingOnsite: guest[10] || "no",
+      lodgingAssignment: guest[14] || "",
+      receptionTable: guest[13]
     }
   })
 }
@@ -100,7 +102,7 @@ async function getAuthClient() {
 /**
  * Prints the rows of the wedding RSVP spreadsheet
  */
-async function getGuests(addressee, resolve, reject) {
+async function getGuests(addressee) {
   // auth client
   const client = await getAuthClient();
 
@@ -110,7 +112,7 @@ async function getGuests(addressee, resolve, reject) {
   // get data
   const spreadsheetDataResponse = await client.spreadsheets.values.get({
     spreadsheetId: process.env.WEDDING_GUEST_SPREADSHEET_ID, 
-    range: "'Guests'!A2:K148",
+    range: "'Guests'!A2:Q122",
   });
 
   if(spreadsheetDataResponse.status !== 200) {
