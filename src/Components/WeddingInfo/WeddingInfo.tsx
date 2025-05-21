@@ -12,7 +12,7 @@ function WeddingInfo() {
     return (
         <div className='weddingInfo'>
             <h1>Your Weekend</h1>
-            <p>Find information about your room and table at reception here.</p>
+            <p>Find information about your room, table at reception, and other weekend details here.</p>
             <LookupInfo setGuestInfo={setGuestInfo} />
         </div>
     );
