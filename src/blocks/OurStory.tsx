@@ -97,7 +97,7 @@ export default class OurStory extends Component {
                     strength={40}
                 >
                     <div
-                        className="ourStory__hero"
+                        className="ourStory__hero ourStory__tall"
                     />
                 </Parallax>
                 <p className="ourStory__content"> Kyle and Syneva are filled with excitement for the future. They are committed to continuing their growth together and uplifting each other, always striving to be the best versions of themselves.</p>
@@ -108,7 +108,7 @@ export default class OurStory extends Component {
                     strength={40}
                 >
                     <div
-                        className="ourStory__hero"
+                        className="ourStory__hero ourStory__tall"
                     />
                 </Parallax>
             </div>

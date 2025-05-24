@@ -95,6 +95,9 @@ p.ourStory__content {
     transform: none !important;
 }
 
+.ourStory__tall {
+    height: 350px;
+}
 
 @media screen and (min-width: 1000px) {
     .react-parallax {
@@ -144,6 +147,10 @@ p.ourStory__content {
 
     .ourStory__hero {
         height: 250px;
+    }
+
+    .ourStory__tall {
+        height: 350px;
     }
 
     .ourStory__separatePictures img {
