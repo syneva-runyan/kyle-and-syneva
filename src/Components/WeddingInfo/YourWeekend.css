@@ -1,0 +1,21 @@
+.yourWeekend_welcomeLetterCTA {
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+}
+
+.yourWeekend_welcomeLetterCTA button {
+    background-color: var(--primary--light);
+    border: 0;
+    padding: 10px 20px;
+    margin-top: 20px;
+    color: white;
+}
+
+.szh-accordion__item-panel {
+    margin-top: 20px;
+}
+
+.yourWeekend_welcomeLetterPS {
+    color: var(--primary--light);
+}

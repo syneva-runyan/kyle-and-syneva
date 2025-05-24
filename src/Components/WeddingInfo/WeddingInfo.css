@@ -1,3 +1,10 @@
 .weddingInfo {
     text-align: center;
 }
+
+
+@media (max-width:450px)  {
+    .weddingInfo {
+        padding-top: 40px;
+    }
+}
