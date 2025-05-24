@@ -28,7 +28,7 @@ function YourWeekend({ guestInfo, searchAnotherParty }: { guestInfo: guestInfoTy
                     With love and gratitude,<br/>
                     Kyle and Syneva
                     <br/><br/>
-                    <span className="yourWeekend_welcomeLetterPS">PS: When you see our moms this weekend, make sure to compliment and thank them for everything they've done to make this weekend happen - We wouldn't have cake or a ibuprofen here without them!</span><br/><br/>
+                    <span className="yourWeekend_welcomeLetterPS">PS: When you see our moms this weekend, make sure to compliment and thank them for everything they've done to make this weekend happen - We wouldn't have cake or ibuprofen here without them!</span><br/><br/>
                 </AccordionItem>
 
             </Accordion>
