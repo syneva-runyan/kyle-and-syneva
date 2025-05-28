@@ -16,9 +16,8 @@ function WeekendItinerary() {
                 <li><strong>10am - Noon</strong> (Optional) Group hiking</li>
                 <li><strong>12:30pm - 2pm</strong> Lunch</li>
                 <li><strong>2:30pm - 5pm</strong> (Optional) Non-alcoholic and alcoholic group tastings followed by Singo</li>
-                <li><strong>5pm - 6pm</strong> (Wedding Party Only*) Wedding Rehearsal</li>
-                <li><strong>7pm - 8pm</strong>  Rehearsal Dinner (All guests invited, dress code - <a href="https://www.theknot.com/content/what-to-wear-casual" target="_blank" rel="noopener noreferrer" >smart casual</a>)</li>
-                <p><em>*all other events are open to all guests</em></p>
+                <li><strong>5pm - 6pm</strong> (Wedding Party Only) Wedding Rehearsal</li>
+                <li><strong>7pm - 9pm</strong>  Rehearsal Dinner (All guests invited, dress code - <a href="https://www.theknot.com/content/what-to-wear-casual" target="_blank" rel="noopener noreferrer" >smart casual</a>)</li>
             </ul>
             <h3 >Saturday, June 7th</h3>
             <ul>
