@@ -29,7 +29,7 @@ function YourWeekend({ guestInfo, searchAnotherParty }: { guestInfo: guestInfoTy
     }
 
     const cleanLodgingAssignment = (lodging?: string | null) => {
-        const readableName = lodging?.replaceAll(" ", "").replace(",", "").replace(".","");
+        const readableName = lodging?.replaceAll(" ", "").replace(",", "").replace(".","") || "";
         if (readableName.indexOf("MainHouse") !== -1) {
             return "MainHouse";
         }
