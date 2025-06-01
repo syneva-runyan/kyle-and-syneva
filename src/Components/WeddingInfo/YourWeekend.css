@@ -20,6 +20,11 @@
     margin-top: 20px;
 }
 
+.weddingInfo .szh-accordion__item-content {
+    max-width: 800px;
+    margin: auto;
+}
+
 .yourWeekend_welcomeLetterPS {
     color: var(--primary--light);
 }
@@ -47,6 +52,7 @@
     color: white;
     border: 0;
     padding: 7px;
+    margin-top: 10px;
 }
 
 .tableMap {
