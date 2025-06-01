@@ -2,7 +2,7 @@ function WeekendItinerary() {
     return (
         <>
             <h2 id="itinerary">Weekend Itinerary</h2>
-            <p>In addition to scheduled events, there will be yard games, snacks, refreshments, and llamas throughout the whole weekend.</p>
+            <p>In addition to scheduled events, there will be yard games, snacks, refreshments, and alpacas throughout the whole weekend.</p>
            <h3 >Thursday, June 5th</h3>
            <ul>
                 <li><strong>4pm</strong> Check-in </li>

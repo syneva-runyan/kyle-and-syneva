@@ -52,9 +52,9 @@ export default function Lookup({ setGuestInfo }: { setGuestInfo: React.Dispatch<
             <form className="rsvp-lookup__form" onSubmit={onSubmit}>
                 <div className="rsvp-lookup__inputs">
                     <div className="floating-label">
-                        <input id="first-name" placeholder="&nbsp;Invitation Addressee" value={addressee} onChange={(e) => onAddresseeChange(e.target.value)} />
+                        <input id="first-name" placeholder="&nbsp;Party Name" value={addressee} onChange={(e) => onAddresseeChange(e.target.value)} />
                         <label
-                            htmlFor="first-name">Invitation Addressee</label>
+                            htmlFor="first-name">Party Name</label>
                         <span className="rsvp-lookup__helper">
                             {isError && <p>Uh oh! Something went wrong - please try again.</p>}
                             {suggestion?.name ?

@@ -45,6 +45,18 @@ h2,
   display: none;
 }
 
+@media (prefers-color-scheme: dark) {
+  body.yourWeekend {
+    background-image: url('./assets/yourWeekendBackground.png');
+    background-size: cover;
+    background-blend-mode: soft-light;
+  }
+}
+
+button {
+  border-radius: 5px;
+}
+
 @media screen and (max-width: 450px) {
   .mobileNavCTA {
     background: transparent;

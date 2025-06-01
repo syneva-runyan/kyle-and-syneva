@@ -12,10 +12,551 @@
     color: white;
 }
 
+.yourDetails {
+    line-height: 2rem;
+}
+
 .szh-accordion__item-panel {
     margin-top: 20px;
 }
 
 .yourWeekend_welcomeLetterPS {
     color: var(--primary--light);
+}
+
+.yourWeekend_receptionBlock,
+.yourWeekend_cottage {
+    justify-content: center;
+}
+
+.yourWeekend_receptionBlock .szh-accordion,
+.yourWeekend_cottage .szh-accordion {
+    text-align: inherit;
+    margin-bottom: 40px;
+}
+
+.yourWeekend_receptionBlock .content,
+.yourWeekend_cottage .content {
+    margin-bottom: 0;
+    margin-top: 40px;
+}
+
+.yourWeekend_receptionBlock button,
+.yourWeekend_cottage button {
+    background-color: var(--secondary);
+    color: white;
+    border: 0;
+    padding: 7px;
+}
+
+.tableMap {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    filter: brightness(55%);
+}
+
+.tableCaption {
+    font-size: 0.8rem;
+    margin-bottom: 0;
+}
+
+.tableWrapper {
+    position: relative;
+    padding-top: 67.25%;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+}
+
+.tableMarker,
+.cottageMarker {
+    background-color: white;
+    position: absolute;
+    animation: glowPulse 3s infinite;
+    border: 2px solid var(--secondary);
+    color: black;
+    box-shadow: 0px 0 5px 2px var(--primary)
+}
+
+.cottageMarker {
+    background-color: white;
+    border-color: var(--primary--dark);
+}
+
+.tableMarker:hover {
+    transform: scale(1.1);
+    transition: 0.25s all;
+}
+
+.tableHeadTable {
+    width: 10%;
+    height: 8%;
+    left: 48%;
+    top: 40%;
+
+}
+
+.tableOldCrow {
+    border-radius: 100%;
+    left: 67%;
+    top: 36%;
+    width: 7%;
+    height: 9%;
+}
+
+.tableYukon {
+    border-radius: 100%;
+    left: 60.5%;
+    top: 28%;
+    width: 6.5%;
+    height: 9.5%;
+}
+
+.tableNorthwestArctic {
+    border-radius: 100%;
+    left: 37.5%;
+    top: 28.5%;
+    width: 6.5%;
+    height: 9.5%;
+}
+
+.tableMekoryuk {
+    border-radius: 100%;
+    left: 27%;
+    top: 58.5%;
+    width: 6.5%;
+    height: 9.5%;
+}
+
+.tableJuneau {
+    border-radius: 100%;
+    left: 69.75%;
+    top: 61.5%;
+    width: 6.5%;
+    height: 9.5%;
+}
+
+.tableStMarys {
+    border-radius: 100%;
+    left: 32.75%;
+    top: 48%;
+    width: 6.5%;
+    height: 9.5%;
+}
+
+.tableNome {
+    border-radius: 100%;
+    left: 27.5%;
+    top: 39%;
+    width: 6.5%;
+    height: 9.5%;
+}
+
+.tableWhitehorse {
+    border-radius: 100%;
+    left: 69.5%;
+    top: 46.5%;
+    width: 6.5%;
+    height: 9.5%;
+}
+
+.tablePointHope {
+    border-radius: 100%;
+    left: 27.75%;
+    top: 20.5%;
+    width: 6.5%;
+    height: 9.5%;
+}
+
+.tableBanquetTable1 {
+    left: 40.5%;
+    top: 41%;
+    width: 4.7%;
+    height: 27.5%;
+}
+
+.tableBanquetTable2 {
+    left: 60.5%;
+    top: 41%;
+    width: 4.7%;
+    height: 27.5%;
+}
+
+.cottageMain {
+    left: 54%;
+    top: 47%;
+    width: 3%;
+    height: 5%;
+    background-color: var(--primary--light);
+    border-color: white;
+}
+
+.cottageDogwoodCottage {
+    width: 3%;
+    height: 4%;
+    top: 95%;
+    left: 49%;
+}
+
+.cottageGardenCottage {
+    left: 54%;
+    top: 53%;
+    width: 3%;
+    height: 3%;
+}
+
+.detailsForMainHouse .cottageMain {
+    background-color: white;
+    border-color: var(--primary--dark);
+}
+
+.cottageHawkesviewCottage2 {
+    left: 42%;
+    top: 35.5%;
+    width: 3%;
+    height: 3%;
+}
+
+.cottageHawkesviewCottage1 {
+    left: 45%;
+    top: 32.5%;
+    width: 3%;
+    height: 3.5%;
+}
+
+.cottageBlackberry {
+    width: 3%;
+    height: 4%;
+    top: 22%;
+    left: 47.5%;
+}
+
+.cottagePhillipsHouse {
+    width: 5%;
+    height: 7%;
+    top: 8%;
+    left: 52%;
+}
+
+.cottagePrimrose {
+    width: 2%;
+    height: 4%;
+    top: 57%;
+    left: 46%;
+}
+
+.cottageAppletreeCottage {
+    width: 2%;
+    height: 3%;
+    top: 53.5%;
+    left: 37.5%;
+}
+
+.cottageRobinsnestCottage {
+    width: 4%;
+    height: 5%;
+    left: 81.5%;
+    top: 37%;
+}
+
+.cottageCreeksideCottage {
+    width: 3%;
+    height: 4%;
+    top: 72%;
+    left: 48%;
+}
+
+.cottageCherokeeCottage {
+    width: 2.5%;
+    height: 3%;
+    top: 58%;
+    left: 34%;
+}
+.cottageCherokeeStudio {
+    width: 2.5%;
+    height: 3%;
+    top: 60%;
+    left: 37%;
+}
+
+.cottageBlueberryCottage {
+    width: 3%;
+    height: 3%;
+    top: 55%;
+    left: 41%;
+}
+
+.cottageHummingbirdCottage {
+    width: 3%;
+    height: 4%;
+    top: 46%;
+    left: 28%;
+}
+
+.mobileHelper {
+    display: none;
+}
+
+
+@media screen and (max-width: 450px) {
+    .mobileHelper {
+        display: block;
+        margin-top: 0;
+    }
+    .yourDetails {
+        line-height: 0.25rem;
+    }
+
+    .yourWeekend_receptionBlock button,
+    .yourWeekend_cottage button {
+        margin-top: 10px;    
+    }
+    .tableWrapper {
+        overflow: hidden;
+    }
+
+    .mapForGardenCottage,
+    .mapForMainHouse {
+        transform: scale(5.5);
+    }
+
+    .mapForRobinsnestCottage {
+        transform: scale(3) translateX(-19%) translateY(7%)
+    }
+
+    .mapForBlueberryCottage {
+        transform: scale(4.5) translateY(2%) translateX(3%);
+    }
+
+    .mapForHawkesviewCottage2 {
+        transform: scale(5.5) translateY(8%);
+    }
+
+    .mapForAppletreeCottage {
+        transform: scale(4) translateY(5%) translateX(4%)
+    }
+
+    .mapForDogwoodCottage {
+        transform: scale(5.5) translateY(-40%);
+    }
+
+    .mapForPrimroseCottage {
+        transform: scale(5.5) translateY(-4%);
+    }
+
+    .mapForHawkesviewCottage1 {
+        transform: scale(5.5) translateY(8%);
+    }
+
+    .mapForCherokeeStudio,
+    .mapForCherokeeCottage {
+        transform: scale(4) translateX(5%) translateY(-5%)
+    }
+
+    .mapForHummingbirdCottage {
+        transform: scale(3.5) translateX(7.5%);
+    }
+
+    .mapForBlackberry {
+        transform: scale(5.5) translateY(20%) translateX(-2%)
+    }
+
+    .mapForPhillipsHouse {
+        transform: scale(4) translateY(42%) translateX(-8%)
+    }
+
+    .mapForCreeksideCottage {
+       transform: scale(3.5) translateY(-12%)
+    }
+
+    .cottageBlackberry {
+        width: 15%;
+        height: 21%;
+        top: 7%;
+        left: 27.5%;
+    }
+
+    .cottagePhillipsHouse {
+        width: 14%;
+        height: 33%;
+        top: 56%;
+        left: 27.5%;
+    }
+
+    .detailsForDogwoodCottage .cottageMain,
+    .detailsForBlackberry .cottageMain,
+    .detailsForPhillipsHouse .cottageMain {
+        display: none;
+    }
+
+    .detailsForDogwoodCottage .mainCottageLegend,
+    .detailsForBlackberry .mainCottageLegend,
+    .detailsForPhillipsHouse .mainCottageLegend {
+        display: none;
+    }
+
+    .detailsForBlueberryCottage .cottageMain {
+        width: 12%;
+        height: 26%;
+        left: 82%;
+        top: 44%;
+    }
+
+    .detailsForCreeksideCottage .cottageMain {
+        left: 64%;
+        top: 0%;
+        width: 10%;
+        height: 14%;
+    }
+
+    .detailsForCherokeeStudio .cottageMain,
+    .detailsForCherokeeCottage .cottageMain {
+        width: 13%;
+        height: 21%;
+        left: 85%;
+        top: 18%;
+    }
+
+    .detailsForRobinsnestCottage .cottageMain {
+        left: 5%;
+        top: 61%;
+        width: 8%;
+        height: 16%;
+    }
+
+    .detailsForHawkesviewCottage1 .cottageMain,
+    .detailsForHawkesviewCottage2 .cottageMain {
+        left: 72%;
+        top: 77%;
+        width: 15%;
+        height: 23%;
+    }
+
+    .detailsForAppletreeCottage .cottageMain {
+        left: 82%;
+        top: 56%;
+        width: 11%;
+        height: 23%;
+    }
+
+    .detailsForPrimroseCottage .cottageMain {
+        left: 72%;
+        top: 14%;
+        width: 15%;
+        height: 23%;
+    }
+
+    .detailsForHummingbirdCottage .cottageMain {
+        left: 91%;
+        top: 38%;
+        width: 8%;
+        height: 21%;
+    }
+
+    .detailsForGardenCottage .cottageMain,
+    .detailsForMainHouse .cottageMain {
+        left: 73%;
+        top: 34%;
+        width: 14%;
+        height: 27%;
+    }
+
+    .cottageHawkesviewCottage2 {
+        left: 9%;
+        top: 12.5%;
+        width: 15%;
+        height: 19%;
+    }
+
+    .cottageHawkesviewCottage1 {
+        left: 22%;
+        top: 0.5%;
+        width: 16%;
+        height: 15%;
+    }
+
+    .cottageGardenCottage {
+        left: 72%;
+        top: 70%;
+        width: 17%;
+        height: 13%;
+    }
+
+    .cottagePrimroseCottage {
+        left: 29%;
+        top: 69.5%;
+        width: 10%;
+        height: 15%;
+    }
+    .cottageDogwoodCottage {
+        left: 48%;
+        top: 76.5%;
+        width: 14%;
+        height: 19%;
+    }
+
+    .cottageAppletreeCottage {
+        width: 8%;
+        height: 9%;
+        top: 87.5%;
+        left: 15.5%;
+    }
+
+    .cottageRobinsnestCottage {
+        width: 9%;
+        height: 13%;
+        left: 88.5%;
+        top: 34%;
+    }
+
+    .cottageCreeksideCottage {
+        width: 11%;
+        height: 11%;
+        top: 88%;
+        left: 42%;
+    }
+
+    .cottageCherokeeCottage {
+        width: 9.5%;
+        height: 11%;
+        top: 64%;
+        left: 6%;
+    }
+    .cottageCherokeeStudio {
+        width: 9.5%;
+        height: 11%;
+        top: 68%;
+        left: 17%;
+    }
+
+    .cottageBlueberryCottage {
+        width: 9%;
+        height: 9%;
+        top: 84%;
+        left: 29%;
+    }
+
+    .cottageHummingbirdCottage {
+        width: 9%;
+        height: 14%;
+        top: 37%;
+        left: 1%;
+    }
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
 }
