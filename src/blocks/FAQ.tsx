@@ -24,6 +24,22 @@ questions: [{
     answer: "You can read more about and see pictures of the accomodations on <a href=\"https://www.hawkesdene.com/accommodations/\" target=\"__blank\" rel=\"noopener noreferrer\">Hawesdene's website</a>."
 }],
 }, {
+    category: "Photography",
+    questions: [{
+        question: "Can I take photos during the ceremony?",
+        answer: "Please keep your phones off and away during the ceremony - we have an amazing photograph who will be capturing the day. We want you to be present and enjoy the moment with us.",
+    }, 
+    {
+        question: "Can I post photos on social media?",
+        answer: "Feel free to post tasteful photos online - however we ask that you exclude other parent's children from your posts unless you have explicit permission."
+    }, {
+        question: "Do you have a wedding hashtag?",
+        answer: "No"
+    }, {
+        question: "How can I share my photos with you?",
+        answer: "We have a shared google photo album you can upload any tasteful wedding photos during or after the weekend! <a href=\"https://photos.app.goo.gl/nty5kHdHcUUpzs1L9\" target=\"__blank\" rel=\"noopener noreferrer\">Click here to upload photos</a>.",
+    }], },
+{
     category: "general",
     questions: [
     {
@@ -38,6 +54,18 @@ questions: [{
 }, {
     question: "What is the dress code for the wedding?",
     answer: "Semi-formal attire",
+}, {
+    question: "What is semi-formal attire?",
+    answer: "For me, a suite (with or without a tie) or a nice dress shirt and pants.  For women, a nice dress, suit, or tasteful jumpsuit.",
+}, {
+    question: "Will there be meal options for guests with dietary restrictions or allergies?",
+    answer: "The kitchen is accomodating reasonable requests specified with RSVPs.You can confirm your meal accomodations on the <a href=\"/wedding-info\" target=\"__blank\" rel=\"noopener noreferrer\">Your Weekend</a> page<br/><br/> <br/> Altered meals will be served plated, separate from buffets. We recomend you say hi to the kitchen when you arrive so they know who you are.",
+},{
+    question: "Will there be a open bar?",
+    answer: "Yes - Please enjoy responsibly.",
+},{
+    question: "Where should I park?",
+    answer: "There is a free parking lot on property - look out for signage when you arrive.",
 }, {
     question: "Will there be alpacas?",
     answer: "Yes. Be excited.",

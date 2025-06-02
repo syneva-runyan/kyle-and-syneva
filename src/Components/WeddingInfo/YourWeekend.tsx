@@ -57,6 +57,8 @@ function YourWeekend({ guestInfo, searchAnotherParty }: { guestInfo: guestInfoTy
         }
         return readableName;
     }
+
+    let areMealAccomodations = false;
     return (
         <div className='weddingInfo'>
             <h2>{guestInfo.name}</h2>
@@ -110,6 +112,21 @@ function YourWeekend({ guestInfo, searchAnotherParty }: { guestInfo: guestInfoTy
                         </div>
                     </AccordionItem>
                 </Accordion>
+            </div>
+            <div className="">
+                <p className='content'>
+                    <strong>Meal Accomdations</strong><br/>
+                    {guestInfo.partyMembers?.map((guest) => {
+                        const isEmpty = (guest.foodPreferences === " " || guest.foodPreferences === null || guest.foodPreferences === undefined || guest.foodPreferences === "");
+                        if (!isEmpty) {
+                            areMealAccomodations = true;
+                        }
+                        return (
+                            <span key={guest.name} className='tableCaption'>{guest.name} - {!isEmpty ? guest.foodPreferences   : "None"}<br/></span>
+                        )
+                    })}
+                </p>
+                { areMealAccomodations && <p> Altered meals will be served plated, separate from buffets. We recomend you say hi to the kitchen when you arrive so they know who you are.</p>}
             </div>
             <button className="rsvp-lookup__btn" onClick={searchAnotherParty}>Search Another Party</button>
         </div>
