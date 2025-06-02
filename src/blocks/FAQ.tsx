@@ -59,7 +59,7 @@ questions: [{
     answer: "For men, a suite (with or without a tie) or a nice dress shirt and pants.  For women, a nice dress, suit, or tasteful jumpsuit.",
 }, {
     question: "Will there be meal options for guests with dietary restrictions or allergies?",
-    answer: "The kitchen is accomodating reasonable requests specified with RSVPs.You can confirm your meal accomodations on the <a href=\"/wedding-info\" target=\"__blank\" rel=\"noopener noreferrer\">Your Weekend</a> page<br/><br/> <br/> Altered meals will be served plated, separate from buffets. We recomend you say hi to the kitchen when you arrive so they know who you are.",
+    answer: "The kitchen is accomodating reasonable requests specified with RSVPs.You can confirm your meal accomodations on the <a href=\"/wedding-info\" target=\"__blank\" rel=\"noopener noreferrer\">Your Weekend</a> page<br/><br/> Altered meals will be served plated, separate from buffets. We recomend you say hi to the kitchen when you arrive so they know who you are.",
 },{
     question: "Will there be a open bar?",
     answer: "Yes - Please enjoy responsibly.",
