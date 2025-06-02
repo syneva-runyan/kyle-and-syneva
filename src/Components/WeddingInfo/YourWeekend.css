@@ -94,6 +94,7 @@
     border-color: var(--primary--dark);
 }
 
+.cottageMarker:hover,
 .tableMarker:hover {
     transform: scale(1.1);
     transition: 0.25s all;

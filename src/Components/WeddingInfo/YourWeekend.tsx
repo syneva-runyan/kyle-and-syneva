@@ -81,10 +81,11 @@ function YourWeekend({ guestInfo, searchAnotherParty }: { guestInfo: guestInfoTy
                     <strong>Room For the Weekend</strong><br/>
                     <span className='yourDetails'>{guestInfo.partyMembers[0].lodgingAssignment || "Check back here again soon!"} </span>
                 </p>
+                {!isAirbnb(guestInfo.partyMembers[0].lodgingAssignment) && <p className='tableCaption'>View additional details on <a href="hhttps://www.hawkesdene.com/homes-and-cottages/" target="__blank" rel="noopener noreferrer">Hawesdene's website</a></p>}
                 { !isAirbnb(guestInfo.partyMembers[0].lodgingAssignment) &&
                     <Accordion>
                         <AccordionItem header={"View Cottage on Map"}>
-                            <p className="tableCaption"><em>Cottage designated in white{ !isMainHouse(guestInfo.partyMembers[0].lodgingAssignment) && <span className='mainCottageLegend'>. Main house shown in blue.</span> }</em></p>
+                            <p className="tableCaption"><em>Your cottage is shown in white{ !isMainHouse(guestInfo.partyMembers[0].lodgingAssignment) && <span className='mainCottageLegend'>. Main house is shown in blue.</span> }</em></p>
                             <p className="mobileHelper tableCaption">View in desktop mode for larger map.</p>
                             <div className="tableWrapper">
                                 <img className={`tableMap mapFor${cleanLodgingAssignment(guestInfo.partyMembers[0].lodgingAssignment)}`} src={groundsMap} alt="Reception Table Map" />

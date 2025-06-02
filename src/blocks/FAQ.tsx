@@ -17,11 +17,11 @@ category: "lodging",
 questions: [{
     exludeFromRsvp: "true",
     question: "How do I find my room?",
-    answer: "At check-in, come to the main house. We'll have room information and maps available. We also plan to make this information available on the website before the wedding. Check back here for updates."
+    answer: "At check-in, come to the main house. We'll have room information and maps available. We can also view room information on the <a href='./wedding-info'>your weekend page</a> ahead of time."
 }, 
 {
     question: "What do the accomodations looks like?",
-    answer: "You can read more about and see pictures of the accomodations on <a href=\"https://www.hawkesdene.com/accommodations/\" target=\"__blank\" rel=\"noopener noreferrer\">Hawesdene's website</a>. Specific rooms or cabins aren't guaranteed but can be requested."
+    answer: "You can read more about and see pictures of the accomodations on <a href=\"https://www.hawkesdene.com/accommodations/\" target=\"__blank\" rel=\"noopener noreferrer\">Hawesdene's website</a>."
 }],
 }, {
     category: "general",
