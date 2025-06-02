@@ -47,7 +47,7 @@ questions: [{
     answer: "If coming from out of town, we recommend flying into Atlanta then driving.  The drive is about 2 and a half hours with no traffic."
 }, {
     question: "Where do I need to be when, and what are we doing during the weekend?",
-    answer: "There is a weekend itinerary on the <a href=\"/#itinerary\">home page</a> - Note that exact details and times are subject to change."
+    answer: "There is a weekend itinerary on the <a href=\"/#itinerary\">home page</a> - Plan on arriving at the ceremony 15 minutes before the scheduled start time."
 }, {
     question: "Are kids invited?",
     answer: "Kids are welcome to come! We just ask that during the ceremony and reception they stay with a local babysitter, which we'll provide on-site."
