@@ -17,7 +17,7 @@ category: "lodging",
 questions: [{
     exludeFromRsvp: "true",
     question: "How do I find my room?",
-    answer: "At check-in, come to the main house. We'll have room information and maps available. We can also view room information on the <a href='./wedding-info'>your weekend page</a> ahead of time."
+    answer: "At check-in, come to the main house. We'll have room information and maps available. We can also view room information on the <a href='/wedding-info'>your weekend page</a> ahead of time."
 }, 
 {
     question: "What do the accomodations looks like?",
