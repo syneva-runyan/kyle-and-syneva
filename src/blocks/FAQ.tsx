@@ -27,7 +27,7 @@ questions: [{
     category: "photography",
     questions: [{
         question: "Can I take photos during the ceremony?",
-        answer: "Please keep your phones off and away during the ceremony - We have an amazing photograph who will be capturing the day and want you to be present and enjoy the moment with us.",
+        answer: "Please keep your phones off and away during the ceremony - We have an amazing photographer who will be capturing the day and want you to be present and enjoy the moment with us.",
     }, 
     {
         question: "Can I post photos on social media?",
