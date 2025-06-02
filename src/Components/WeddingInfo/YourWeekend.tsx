@@ -3,10 +3,16 @@ import { guestInfoType } from '../RSVP/Questionaire';
 import "./YourWeekend.css";
 import { useEffect } from 'react';
 
+import groundsMap from "../../assets/groundsMap.jpg"
+import weddingTableMap  from "../../assets/weddingTables.png";
+
 function YourWeekend({ guestInfo, searchAnotherParty }: { guestInfo: guestInfoType, searchAnotherParty: any }) {
 
     useEffect(() => {
         document.body.className = "yourWeekend";
+        return () => {
+            document.body.className.replace("yourWeekend", "");
+        }
     }, [])
 
     const addressee = guestInfo.partyMembers.reduce((acc, member, idx) => { 
@@ -81,7 +87,7 @@ function YourWeekend({ guestInfo, searchAnotherParty }: { guestInfo: guestInfoTy
                             <p className="tableCaption"><em>Cottage designated in white{ !isMainHouse(guestInfo.partyMembers[0].lodgingAssignment) && <span className='mainCottageLegend'>. Main house shown in blue.</span> }</em></p>
                             <p className="mobileHelper tableCaption">View in desktop mode for larger map.</p>
                             <div className="tableWrapper">
-                                <img className={`tableMap mapFor${cleanLodgingAssignment(guestInfo.partyMembers[0].lodgingAssignment)}`} src="src/assets/groundsMap.jpg" alt="Reception Table Map" />
+                                <img className={`tableMap mapFor${cleanLodgingAssignment(guestInfo.partyMembers[0].lodgingAssignment)}`} src={groundsMap} alt="Reception Table Map" />
                                 <span className="cottageMarker cottageMain" />
                                 <span className={`cottageMarker cottage${cleanLodgingAssignment(guestInfo.partyMembers[0].lodgingAssignment)}`} />
                             </div>
@@ -98,7 +104,7 @@ function YourWeekend({ guestInfo, searchAnotherParty }: { guestInfo: guestInfoTy
                     <AccordionItem header={"View Table on Map"}>
                         <p className="tableCaption"><em>Table designated in white</em></p>
                         <div className='tableWrapper'>
-                            <img className="tableMap" src="src/assets/weddingTables.png" alt="Reception Table Map" />
+                            <img className="tableMap" src={weddingTableMap} alt="Reception Table Map" />
                             <span className={`tableMarker table${guestInfo.partyMembers[0].receptionTable?.replaceAll(" ", "").replace("'", "").replace(".","")}`} />
                         </div>
                     </AccordionItem>
