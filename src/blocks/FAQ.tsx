@@ -24,7 +24,7 @@ questions: [{
     answer: "You can read more about and see pictures of the accomodations on <a href=\"https://www.hawkesdene.com/accommodations/\" target=\"__blank\" rel=\"noopener noreferrer\">Hawesdene's website</a>."
 }],
 }, {
-    category: "Photography",
+    category: "photography",
     questions: [{
         question: "Can I take photos during the ceremony?",
         answer: "Please keep your phones off and away during the ceremony - we have an amazing photograph who will be capturing the day. We want you to be present and enjoy the moment with us.",
