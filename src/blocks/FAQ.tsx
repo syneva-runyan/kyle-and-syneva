@@ -27,7 +27,7 @@ questions: [{
     category: "photography",
     questions: [{
         question: "Can I take photos during the ceremony?",
-        answer: "Please keep your phones off and away during the ceremony - we have an amazing photograph who will be capturing the day. We want you to be present and enjoy the moment with us.",
+        answer: "Please keep your phones off and away during the ceremony - We have an amazing photograph who will be capturing the day and want you to be present and enjoy the moment with us.",
     }, 
     {
         question: "Can I post photos on social media?",
@@ -37,7 +37,7 @@ questions: [{
         answer: "No"
     }, {
         question: "How can I share my photos with you?",
-        answer: "We have a shared google photo album you can upload any tasteful wedding photos during or after the weekend! <a href=\"https://photos.app.goo.gl/nty5kHdHcUUpzs1L9\" target=\"__blank\" rel=\"noopener noreferrer\">Click here to upload photos</a>.",
+        answer: "We have a shared google photo album you can upload any tasteful wedding photos to during or after the weekend! <a href=\"https://photos.app.goo.gl/nty5kHdHcUUpzs1L9\" target=\"__blank\" rel=\"noopener noreferrer\">Click here to upload photos</a>.",
     }], },
 {
     category: "general",
